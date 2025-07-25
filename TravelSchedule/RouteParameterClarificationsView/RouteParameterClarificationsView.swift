@@ -12,12 +12,12 @@ import SwiftUI
 struct RouteParameterClarificationsView: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
     
     // MARK: body
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             DepartureTimeTitle()
@@ -48,7 +48,7 @@ struct RouteParameterClarificationsView: View {
 private struct DepartureTimeTitle: View {
     
     // MARK: body
-
+    
     var body: some View {
         Text("Время отправления")
             .font(.system(size: 24, weight: .bold))
@@ -61,11 +61,11 @@ private struct DepartureTimeTitle: View {
 private struct AnnouncementDepartureTime: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     
     // MARK: body
-
+    
     var body: some View {
         ForEach(DepartureTime.allCases, id: \.self) { time in
             HStack {
@@ -80,10 +80,12 @@ private struct AnnouncementDepartureTime: View {
                         coordinator.timeFilters.insert(time)
                     }
                 }) {
-                    Image(systemName: coordinator.timeFilters.contains(time) ? "checkmark.square.fill" : "square")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundStyle(.blackForTheme)
+                    Image(
+                        systemName: coordinator.timeFilters.contains(time) ? "checkmark.square.fill" : "square"
+                    )
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .foregroundStyle(.blackForTheme)
                 }
             }
             .frame(height: 60)
@@ -97,7 +99,7 @@ private struct AnnouncementDepartureTime: View {
 private struct TransferOptionsTitle: View {
     
     // MARK: body
-
+    
     var body: some View {
         Text("Показывать варианты с пересадками")
             .font(.system(size: 20, weight: .bold))
@@ -110,22 +112,24 @@ private struct TransferOptionsTitle: View {
 private struct ShowTransfers: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     
     // MARK: body
-
+    
     var body: some View {
         Text("Да")
             .font(.system(size: 17, weight: .regular))
             .foregroundStyle(.blackForTheme)
         Spacer()
         Button(action: { coordinator.showTransfers = true }) {
-            Image(coordinator.showTransfers == true ? "power_button_on" : "power_button_off")
-                .renderingMode(.template)
-                .resizable()
-                .foregroundStyle(.blackForTheme)
-                .frame(width: 24, height: 24)
+            Image(
+                coordinator.showTransfers == true ? "power_button_on" : "power_button_off"
+            )
+            .renderingMode(.template)
+            .resizable()
+            .foregroundStyle(.blackForTheme)
+            .frame(width: 24, height: 24)
         }
         .frame(height: 60)
         .padding(.trailing, 2)
@@ -137,22 +141,24 @@ private struct ShowTransfers: View {
 private struct NotShowTransfers: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     
     // MARK: body
-
+    
     var body: some View {
         Text("Нет")
             .font(.system(size: 17, weight: .regular))
             .foregroundStyle(.blackForTheme)
         Spacer()
         Button(action: { coordinator.showTransfers = false }) {
-            Image(coordinator.showTransfers == false ? "power_button_on" : "power_button_off")
-                .renderingMode(.template)
-                .resizable()
-                .foregroundStyle(.blackForTheme)
-                .frame(width: 24, height: 24)
+            Image(
+                coordinator.showTransfers == false ? "power_button_on" : "power_button_off"
+            )
+            .renderingMode(.template)
+            .resizable()
+            .foregroundStyle(.blackForTheme)
+            .frame(width: 24, height: 24)
         }
         .frame(height: 60)
         .padding(.trailing, 2)
@@ -164,11 +170,11 @@ private struct NotShowTransfers: View {
 private struct ApplyButton: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     
     // MARK: body
-
+    
     var body: some View {
         if coordinator.isFiltersValid {
             Button(action: {coordinator.path.removeLast()}) {
@@ -190,11 +196,11 @@ private struct ApplyButton: View {
 private struct BackButton: View {
     
     // MARK: Public Property
-
+    
     let action: () -> Void
     
     // MARK: body
-
+    
     var body: some View {
         Button(action: action) {
             Image(.chevronLeft)

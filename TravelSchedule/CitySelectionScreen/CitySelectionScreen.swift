@@ -12,14 +12,14 @@ import SwiftUI
 struct CitySelectionScreen: View {
     
     // MARK: Private Property
-
+    
     @StateObject private var viewModel = StoriesViewModel()
     
     // MARK: Public Property
     
     @ObservedObject var coordinator: NavCoordinator
     @State private var containsFromAndTo = true
-
+    
     // MARK: body
     
     var body: some View {
@@ -37,11 +37,11 @@ struct CitySelectionScreen: View {
 private struct ShowStoriesScrollView: View {
     
     // MARK: Public Property
-
+    
     @StateObject var viewModel = StoriesViewModel()
-
+    
     // MARK: body
-
+    
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(alignment: .center, spacing: 12) {
@@ -53,7 +53,6 @@ private struct ShowStoriesScrollView: View {
         .frame(height: 140)
         .padding(.horizontal, 16)
         .scrollIndicators(.hidden)
-
     }
 }
 
@@ -62,12 +61,12 @@ private struct ShowStoriesScrollView: View {
 private struct ChoosingDirection: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Binding var containsFromAndTo: Bool
-
+    
     // MARK: body
-
+    
     var body: some View {
         VStack(spacing: 16) {
             ZStack {
@@ -77,7 +76,6 @@ private struct ChoosingDirection: View {
                     VStack {
                         NavigationLinkWhereFrom(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
                         NavigationLinkWhere(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
-
                     }
                     .frame(width: 259, height: 96)
                     .background(RoundedRectangle(cornerRadius: 20)
@@ -85,10 +83,10 @@ private struct ChoosingDirection: View {
                     )
                     .padding(.horizontal, 16)
                     
-                    CityChangeButton(containsFromAndTo: $containsFromAndTo, coordinator: coordinator, action: {
-
-                        containsFromAndTo.toggle()
-                    })
+                    CityChangeButton(
+                        coordinator: coordinator,
+                        containsFromAndTo: $containsFromAndTo,
+                        action: { containsFromAndTo.toggle() })
                 }
                 .padding(.vertical, 16)
             }
@@ -101,7 +99,6 @@ private struct ChoosingDirection: View {
         
         Divider()
             .frame(height: 3)
-
     }
 }
 
@@ -110,7 +107,7 @@ private struct ChoosingDirection: View {
 private struct BackgroundContainsFromAndTo: View {
     
     // MARK: body
-
+    
     var body: some View {
         Color(UIColor(resource: .blueUni))
             .frame(width: 343, height: 128)
@@ -123,12 +120,12 @@ private struct BackgroundContainsFromAndTo: View {
 private struct NavigationLinkWhereFrom: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Binding var containsFromAndTo: Bool
-
+    
     // MARK: body
-
+    
     var body: some View {
         NavigationLink(value: RouteEnum.choosingCity(station: "", fromField: true)) {
             Text(containsFromAndTo ? (
@@ -157,12 +154,12 @@ private struct NavigationLinkWhereFrom: View {
 private struct NavigationLinkWhere: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Binding var containsFromAndTo: Bool
-
+    
     // MARK: body
-
+    
     var body: some View {
         NavigationLink(value: RouteEnum.choosingCity(station: "", fromField: false)) {
             Text(containsFromAndTo ? (
@@ -190,30 +187,28 @@ private struct NavigationLinkWhere: View {
 private struct CityChangeButton: View {
     
     // MARK: Public Property
-    @Binding var containsFromAndTo: Bool
+    
     @ObservedObject var coordinator: NavCoordinator
-
-
+    @Binding var containsFromAndTo: Bool
+    
     let action: () -> Void
-//    @State var containsFromAndTo = true
-
-
+    
     // MARK: body
-
+    
     var body: some View {
-            Button(action: {
-                let tempCity = coordinator.selectedCityFrom
-                    let tempStation = coordinator.selectedStationFrom
-
-                    coordinator.selectedCityFrom = coordinator.selectedCityTo
-                    coordinator.selectedStationFrom = coordinator.selectedStationTo
-
-                    coordinator.selectedCityTo = tempCity
-                    coordinator.selectedStationTo = tempStation
-                
-                containsFromAndTo.toggle()
-                action()
-            }) {
+        Button(action: {
+            let tempCity = coordinator.selectedCityFrom
+            let tempStation = coordinator.selectedStationFrom
+            
+            coordinator.selectedCityFrom = coordinator.selectedCityTo
+            coordinator.selectedStationFrom = coordinator.selectedStationTo
+            
+            coordinator.selectedCityTo = tempCity
+            coordinator.selectedStationTo = tempStation
+            
+            containsFromAndTo.toggle()
+            action()
+        }) {
             Image("cityChangeButton")
                 .frame(width: 36, height: 36)
                 .background(Color(UIColor(resource: .whiteUni)))
@@ -228,11 +223,11 @@ private struct CityChangeButton: View {
 private struct TheFindButton: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
-
+    
     // MARK: body
-
+    
     var body: some View {
         if !coordinator.selectedCityTo.isEmpty && !coordinator.selectedCityFrom.isEmpty {
             Button(action: {

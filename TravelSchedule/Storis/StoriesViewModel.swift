@@ -12,7 +12,7 @@ import Foundation
 @Observable final class StoriesViewModel: ObservableObject {
     
     // MARK: Public Property
-
+    
     let stories: [StoriesModel]
     
     init() {

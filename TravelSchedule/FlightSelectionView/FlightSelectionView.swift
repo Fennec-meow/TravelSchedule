@@ -12,15 +12,15 @@ import SwiftUI
 struct FlightSelectionView: View {
     
     // MARK: Public Property
-
+    
     @Environment(\.dismiss) var dismiss
     var ticket: Ticket
     
     // MARK: body
-
+    
     var body: some View {
         VStack {
-
+            
         }
         .padding()
         .navigationBarBackButtonHidden(true)

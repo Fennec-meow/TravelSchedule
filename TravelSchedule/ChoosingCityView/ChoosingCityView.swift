@@ -16,12 +16,15 @@ struct ChoosingCityView: View {
     @State private var searchText = ""
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
+    
     var filteredItems: [String] {
         guard !searchText.isEmpty else { return cities }
-        return cities.filter { $0.localizedCaseInsensitiveContains(searchText) }
+        return cities.filter {
+            $0.localizedCaseInsensitiveContains(searchText)
+        }
     }
     
     let station: String
@@ -38,14 +41,14 @@ struct ChoosingCityView: View {
     ]
     
     // MARK: body
-
+    
     var body: some View {
         VStack(spacing: 0) {
             SearchTextField(text: $searchText)
             CityScrollView(
                 coordinator: coordinator,
-                cities: cities,
                 filteredItems: filteredItems,
+                cities: cities,
                 station: station,
                 fromField: fromField
             )
@@ -67,17 +70,18 @@ struct ChoosingCityView: View {
 private struct CityScrollView: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @State var searchText = ""
-    var cities: [String]
+    
     let filteredItems: [String]
-   
+    var cities: [String]
+    
     let station: String
     let fromField: Bool
     
     // MARK: body
-
+    
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
@@ -105,7 +109,7 @@ private struct CityScrollView: View {
 private struct ListCities: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
     
@@ -114,7 +118,7 @@ private struct ListCities: View {
     let fromField: Bool
     
     // MARK: body
-
+    
     var body: some View {
         ForEach(filteredItems, id: \.self) { item in
             Button(action: {
@@ -169,11 +173,11 @@ private struct CityNotFound: View {
 private struct BackButton: View {
     
     // MARK: Public Property
-
+    
     let action: () -> Void
     
     // MARK: body
-
+    
     var body: some View {
         Button(action: action) {
             Image("chevronLeft")
@@ -188,7 +192,7 @@ private struct BackButton: View {
 private struct CitySelectionTitle: View {
     
     // MARK: body
-
+    
     var body: some View {
         Text("Выбор города")
             .font(.system(size: 17, weight: .bold))

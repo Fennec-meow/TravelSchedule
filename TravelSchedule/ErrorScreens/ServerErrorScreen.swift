@@ -12,7 +12,7 @@ import SwiftUI
 struct ServerErrorScreen: View {
     
     // MARK: body
-
+    
     var body: some View {
         VStack {
             Image("serverError")
@@ -21,7 +21,6 @@ struct ServerErrorScreen: View {
             Text("Ошибка сервера")
                 .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.blackForTheme)
-                
         }
     }
 }

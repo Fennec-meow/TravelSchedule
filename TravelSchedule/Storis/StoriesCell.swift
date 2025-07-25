@@ -12,20 +12,20 @@ import SwiftUI
 struct StoriesCell: View {
     
     // MARK: Public Property
-
+    
     var story: StoriesModel
     let storiesHeight: Double = 140
     let storiesWidth: Double = 92
     
     // MARK: body
-
+    
     var body: some View {
         ZStack {
             Image(story.storyName)
                 .resizable()
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .frame(width: storiesWidth, height: storiesHeight)
-               
+            
             RoundedRectangle(cornerRadius: 16)
                 .strokeBorder(.blueUni, lineWidth: 4)
                 .frame(width: storiesWidth, height: storiesHeight)

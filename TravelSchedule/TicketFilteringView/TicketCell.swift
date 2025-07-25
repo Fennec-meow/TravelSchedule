@@ -12,11 +12,11 @@ import SwiftUI
 struct TicketCell: View {
     
     // MARK: Public Property
-
+    
     var ticket: Ticket
     
     // MARK: body
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top) {
@@ -26,7 +26,7 @@ struct TicketCell: View {
                     TicketNote(ticket: ticket)
                 }
                 Spacer()
-
+                
                 TicketDate(ticket: ticket)
             }
             .padding(.bottom, 5)
@@ -43,11 +43,11 @@ struct TicketCell: View {
 private struct TicketOperatorLogo: View {
     
     // MARK: Public Property
-
+    
     var ticket: Ticket
-
+    
     // MARK: body
-
+    
     var body: some View {
         Image(ticket.operatorLogo)
             .frame(width: 38, height: 38)
@@ -60,11 +60,11 @@ private struct TicketOperatorLogo: View {
 private struct TicketCarrierName: View {
     
     // MARK: Public Property
-
+    
     var ticket: Ticket
-
+    
     // MARK: body
-
+    
     var body: some View {
         Text(ticket.carrierName)
             .font(.system(size: 17, weight: .regular))
@@ -77,11 +77,11 @@ private struct TicketCarrierName: View {
 private struct TicketNote: View {
     
     // MARK: Public Property
-
+    
     var ticket: Ticket
-
+    
     // MARK: body
-
+    
     var body: some View {
         if let note = ticket.note {
             Text(note)
@@ -96,11 +96,11 @@ private struct TicketNote: View {
 private struct TicketDate: View {
     
     // MARK: Public Property
-
+    
     var ticket: Ticket
-
+    
     // MARK: body
-
+    
     var body: some View {
         Text(ticket.date)
             .font(.system(size: 12, weight: .regular))
@@ -113,11 +113,11 @@ private struct TicketDate: View {
 private struct TicketDepartureAndArrivalTime: View {
     
     // MARK: Public Property
-
+    
     var ticket: Ticket
-
+    
     // MARK: body
-
+    
     var body: some View {
         HStack {
             Text(ticket.departure)

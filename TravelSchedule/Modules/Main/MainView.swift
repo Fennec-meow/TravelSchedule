@@ -12,11 +12,11 @@ import SwiftUI
 struct MainView: View {
     
     // MARK: Public Property
-
+    
     @StateObject var coordinator = NavCoordinator()
     
     // MARK: body
-
+    
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             TabView {
@@ -25,14 +25,12 @@ struct MainView: View {
                         Image(.schedule)
                             .renderingMode(.template)
                     }
-                
                 SettingsView()
                     .tabItem {
                         Image(.settings)
                             .renderingMode(.template)
                     }
             }
-            
             .tint(.blackForTheme)
             .navigationDestination(for: RouteEnum.self) { route in
                 switch route {
@@ -57,8 +55,6 @@ struct MainView: View {
         }
     }
 }
-
-
 
 #Preview {
     MainView()

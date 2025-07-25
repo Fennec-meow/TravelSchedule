@@ -12,18 +12,21 @@ import SwiftUI
 struct StationSelectionView: View {
     
     // MARK: Private Property
-
+    
     @State private var searchText = ""
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
+    
     var filteredItems: [String] {
         guard !searchText.isEmpty else { return cities }
-        return cities.filter { $0.localizedCaseInsensitiveContains(searchText) }
+        return cities.filter {
+            $0.localizedCaseInsensitiveContains(searchText)
+        }
     }
-
+    
     let city: String
     let fromField: Bool
     
@@ -37,14 +40,14 @@ struct StationSelectionView: View {
     ]
     
     // MARK: body
-
+    
     var body: some View {
         VStack(spacing: 0) {
             SearchTextField(text: $searchText)
             StationScrollView(
                 coordinator: coordinator,
-                cities: cities,
                 filteredItems: filteredItems,
+                cities: cities,
                 city: city,
                 fromField: fromField
             )
@@ -66,17 +69,18 @@ struct StationSelectionView: View {
 private struct StationScrollView: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @State var searchText = ""
-    var cities: [String]
+    
     let filteredItems: [String]
-   
+    var cities: [String]
+    
     let city: String
     let fromField: Bool
     
     // MARK: body
-
+    
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
@@ -104,7 +108,7 @@ private struct StationScrollView: View {
 private struct ListStations: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
     
@@ -113,7 +117,7 @@ private struct ListStations: View {
     let fromField: Bool
     
     // MARK: body
-
+    
     var body: some View {
         ForEach(filteredItems, id: \.self) { item in
             Button(action: {
@@ -148,7 +152,7 @@ private struct ListStations: View {
 private struct StationNotFound: View {
     
     // MARK: body
-
+    
     var body: some View {
         VStack {
             Text("Станция не найдена")
@@ -166,11 +170,11 @@ private struct StationNotFound: View {
 private struct BackButton: View {
     
     // MARK: Public Property
-
+    
     let action: () -> Void
     
     // MARK: body
-
+    
     var body: some View {
         Button(action: action) {
             Image("chevronLeft")
@@ -185,7 +189,7 @@ private struct BackButton: View {
 private struct StationSelectionTitle: View {
     
     // MARK: body
-
+    
     var body: some View {
         Text("Выбор станции")
             .font(.system(size: 17, weight: .bold))

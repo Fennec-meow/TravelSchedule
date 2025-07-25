@@ -12,17 +12,17 @@ import SwiftUI
 struct TicketFilteringView: View {
     
     // MARK: Private Property
-
+    
     private var containsFromAndToTitle: String {
         "\(coordinator.selectedCityFrom) (\(coordinator.selectedStationFrom)) → \(coordinator.selectedCityTo) (\(coordinator.selectedStationTo))"
     }
     
     private var filteredTickets: [Ticket] {
- tickets.filter { ticket in
+        tickets.filter { ticket in
             if let show = coordinator.showTransfers,
                show != ticket.withTransfer
-     { return false }
-
+            { return false }
+            
             guard coordinator.timeFilters.isEmpty else {
                 return coordinator.timeFilters.contains(ticket.departurePeriod)
             }
@@ -31,19 +31,19 @@ struct TicketFilteringView: View {
     }
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-
+    
     let tickets: [Ticket] = [
         .init(carrierName: "РЖД", date: "14 января", departure: "22:30", arrival: "08:15", duration: "20 часов", withTransfer: true, operatorLogo: "RJD", note: "С пересадкой в Костроме"),
         .init(carrierName: "ФГК", date: "15 января", departure: "01:15", arrival: "09:00", duration: "9 часов", withTransfer: true, operatorLogo: "FGC", note: nil),
         .init(carrierName: "Урал логистика", date: "16 января", departure: "12:30", arrival: "21:00", duration: "9 часов", withTransfer: true, operatorLogo: "uralLogistics", note: nil),
         .init(carrierName: "РЖД", date: "17 января", departure: "22:30", arrival: "08:15", duration: "20 часов", withTransfer: true, operatorLogo: "RJD", note: "С пересадкой в Костроме")
     ]
-
+    
     // MARK: body
-
+    
     var body: some View {
         VStack(spacing: 16) {
             FromWhereAndToWhereTitle(title: containsFromAndToTitle)
@@ -68,11 +68,11 @@ struct TicketFilteringView: View {
 private struct FromWhereAndToWhereTitle: View {
     
     // MARK: Public Property
-
+    
     let title: String
-
+    
     // MARK: body
-
+    
     var body: some View {
         HStack {
             Text(title)
@@ -89,12 +89,12 @@ private struct FromWhereAndToWhereTitle: View {
 private struct TicketsScrollView: View {
     
     // MARK: Public Property
-
+    
     let coordinator: NavCoordinator
     let tickets: [Ticket]
-
+    
     // MARK: body
-
+    
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 8) {
@@ -117,7 +117,7 @@ private struct TicketsScrollView: View {
 private struct AreNoOptions: View {
     
     // MARK: body
-
+    
     var body: some View {
         VStack {
             Text("Вариантов нет")
@@ -135,12 +135,12 @@ private struct AreNoOptions: View {
 private struct ShowListFlights: View {
     
     // MARK: Public Property
-
+    
     let action: () -> Void
     let ticket: Ticket
-
+    
     // MARK: body
-
+    
     var body: some View {
         Button(action: action) {
             TicketCell(ticket: ticket)
@@ -153,11 +153,11 @@ private struct ShowListFlights: View {
 private struct SpecifyTimeButton: View {
     
     // MARK: Public Property
-
+    
     @ObservedObject var coordinator: NavCoordinator
-
+    
     // MARK: body
-
+    
     var body: some View {
         Button(action: {
             coordinator.path.append(RouteEnum.routeParameter)
@@ -166,7 +166,7 @@ private struct SpecifyTimeButton: View {
                 Text("Уточнить время")
                     .font(.system(size: 17, weight: .bold))
                     .foregroundStyle(.whiteUni)
-
+                
                 if coordinator.isFiltersValid {
                     Circle()
                         .foregroundStyle(.redUni)
@@ -187,11 +187,11 @@ private struct SpecifyTimeButton: View {
 private struct BackButton: View {
     
     // MARK: Public Property
-
+    
     let action: () -> Void
-
+    
     // MARK: body
-
+    
     var body: some View {
         Button(action: action) {
             Image(.chevronLeft)
@@ -204,4 +204,3 @@ private struct BackButton: View {
 #Preview {
     TicketFilteringView(coordinator: NavCoordinator())
 }
-

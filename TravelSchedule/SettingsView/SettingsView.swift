@@ -12,7 +12,7 @@ import SwiftUI
 struct SettingsView: View {
     
     // MARK: body
-
+    
     var body: some View {
         ServerErrorScreen()
     }

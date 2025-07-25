@@ -12,11 +12,11 @@ import SwiftUI
 struct SearchTextField: View {
     
     // MARK: Public Property
-
+    
     @Binding var text: String
     
     // MARK: body
-
+    
     var body: some View {
         HStack {
             Image("magnifier")
@@ -36,7 +36,3 @@ struct SearchTextField: View {
         .padding(.horizontal, 16)
     }
 }
-
-//#Preview {
-//    SearchTextField(text: "")
-//}

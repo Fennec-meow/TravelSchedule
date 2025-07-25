@@ -12,7 +12,7 @@ import SwiftUI
 struct NoInternetScreen: View {
     
     // MARK: body
-
+    
     var body: some View {
         Image("noInternet")
             .frame(width: 223, height: 223)
@@ -20,7 +20,6 @@ struct NoInternetScreen: View {
         Text("Нет интернета")
             .font(.system(size: 24, weight: .bold))
             .foregroundColor(.blackForTheme)
-            
     }
 }
 
