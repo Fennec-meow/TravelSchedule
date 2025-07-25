@@ -6,23 +6,48 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CEB0DC5E2E13D1AB0002B320 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0DC5D2E13D1AB0002B320 /* OpenAPIURLSession */; };
+		CEB0DC612E13D1C10002B320 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0DC602E13D1C10002B320 /* OpenAPIRuntime */; };
+		CEB0DCB92E157BBF0002B320 /* TravelScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCA92E157BBF0002B320 /* TravelScheduleApp.swift */; };
+		CEB0DCBA2E157BBF0002B320 /* NearestStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCAE2E157BBF0002B320 /* NearestStationsService.swift */; };
+		CEB0DCBB2E157BBF0002B320 /* RouteStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCAF2E157BBF0002B320 /* RouteStationsService.swift */; };
+		CEB0DCBC2E157BBF0002B320 /* SchedualBetweenStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCB02E157BBF0002B320 /* SchedualBetweenStationsService.swift */; };
+		CEB0DCBD2E157BBF0002B320 /* StationScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCB12E157BBF0002B320 /* StationScheduleService.swift */; };
+		CEB0DCBF2E157BBF0002B320 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB0DCAC2E157BBF0002B320 /* Assets.xcassets */; };
+		CEB0DCC02E157BBF0002B320 /* openapi.yaml in Resources */ = {isa = PBXBuildFile; fileRef = CEB0DCB32E157BBF0002B320 /* openapi.yaml */; };
+		CEB0DCC12E157BBF0002B320 /* openapi-generator-config.yaml in Resources */ = {isa = PBXBuildFile; fileRef = CEB0DCB42E157BBF0002B320 /* openapi-generator-config.yaml */; };
+		CEB0DCC72E157C080002B320 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCC52E157C080002B320 /* MainView.swift */; };
+		CEB0DCE52E169B7A0002B320 /* NearestCityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCE42E169B7A0002B320 /* NearestCityService.swift */; };
+		CEB0DCEC2E169FB10002B320 /* CarrierInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCEB2E169FB10002B320 /* CarrierInfoService.swift */; };
+		CEB0DCFE2E16C7E70002B320 /* AllStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCFD2E16C7E70002B320 /* AllStationsService.swift */; };
+		CEB0DD062E16CD190002B320 /* CopyrightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DD052E16CD190002B320 /* CopyrightService.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		CEB0DC372E13CEA70002B320 /* TravelSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEB0DCA92E157BBF0002B320 /* TravelScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleApp.swift; sourceTree = "<group>"; };
+		CEB0DCAC2E157BBF0002B320 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEB0DCAE2E157BBF0002B320 /* NearestStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestStationsService.swift; sourceTree = "<group>"; };
+		CEB0DCAF2E157BBF0002B320 /* RouteStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteStationsService.swift; sourceTree = "<group>"; };
+		CEB0DCB02E157BBF0002B320 /* SchedualBetweenStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedualBetweenStationsService.swift; sourceTree = "<group>"; };
+		CEB0DCB12E157BBF0002B320 /* StationScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationScheduleService.swift; sourceTree = "<group>"; };
+		CEB0DCB32E157BBF0002B320 /* openapi.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = openapi.yaml; sourceTree = "<group>"; };
+		CEB0DCB42E157BBF0002B320 /* openapi-generator-config.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "openapi-generator-config.yaml"; sourceTree = "<group>"; };
+		CEB0DCC52E157C080002B320 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		CEB0DCE42E169B7A0002B320 /* NearestCityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearestCityService.swift; sourceTree = "<group>"; };
+		CEB0DCEB2E169FB10002B320 /* CarrierInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierInfoService.swift; sourceTree = "<group>"; };
+		CEB0DCFD2E16C7E70002B320 /* AllStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStationsService.swift; sourceTree = "<group>"; };
+		CEB0DD052E16CD190002B320 /* CopyrightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		CEB0DC392E13CEA70002B320 /* TravelSchedule */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TravelSchedule;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CEB0DC342E13CEA70002B320 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB0DC612E13D1C10002B320 /* OpenAPIRuntime in Frameworks */,
+				CEB0DC5E2E13D1AB0002B320 /* OpenAPIURLSession in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +57,7 @@
 		CEB0DC2E2E13CEA70002B320 = {
 			isa = PBXGroup;
 			children = (
-				CEB0DC392E13CEA70002B320 /* TravelSchedule */,
+				CEB0DCB82E157BBF0002B320 /* TravelSchedule */,
 				CEB0DC382E13CEA70002B320 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +68,82 @@
 				CEB0DC372E13CEA70002B320 /* TravelSchedule.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CEB0DCAA2E157BBF0002B320 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCA92E157BBF0002B320 /* TravelScheduleApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CEB0DCAB2E157BBF0002B320 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCC62E157C080002B320 /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CEB0DCAD2E157BBF0002B320 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCAC2E157BBF0002B320 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CEB0DCB22E157BBF0002B320 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCAE2E157BBF0002B320 /* NearestStationsService.swift */,
+				CEB0DCB02E157BBF0002B320 /* SchedualBetweenStationsService.swift */,
+				CEB0DCB12E157BBF0002B320 /* StationScheduleService.swift */,
+				CEB0DCAF2E157BBF0002B320 /* RouteStationsService.swift */,
+				CEB0DCE42E169B7A0002B320 /* NearestCityService.swift */,
+				CEB0DCEB2E169FB10002B320 /* CarrierInfoService.swift */,
+				CEB0DCFD2E16C7E70002B320 /* AllStationsService.swift */,
+				CEB0DD052E16CD190002B320 /* CopyrightService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CEB0DCB52E157BBF0002B320 /* yaml */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCB32E157BBF0002B320 /* openapi.yaml */,
+				CEB0DCB42E157BBF0002B320 /* openapi-generator-config.yaml */,
+			);
+			path = yaml;
+			sourceTree = "<group>";
+		};
+		CEB0DCB62E157BBF0002B320 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCB52E157BBF0002B320 /* yaml */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		CEB0DCB82E157BBF0002B320 /* TravelSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCAA2E157BBF0002B320 /* App */,
+				CEB0DCAB2E157BBF0002B320 /* Modules */,
+				CEB0DCB22E157BBF0002B320 /* Services */,
+				CEB0DCB62E157BBF0002B320 /* Support */,
+				CEB0DCAD2E157BBF0002B320 /* Resources */,
+			);
+			path = TravelSchedule;
+			sourceTree = "<group>";
+		};
+		CEB0DCC62E157C080002B320 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CEB0DCC52E157C080002B320 /* MainView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,12 +160,12 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				CEB0DC392E13CEA70002B320 /* TravelSchedule */,
+				CEB0DC6B2E13D2300002B320 /* PBXTargetDependency */,
 			);
 			name = TravelSchedule;
 			packageProductDependencies = (
+				CEB0DC5D2E13D1AB0002B320 /* OpenAPIURLSession */,
+				CEB0DC602E13D1C10002B320 /* OpenAPIRuntime */,
 			);
 			productName = TravelSchedule;
 			productReference = CEB0DC372E13CEA70002B320 /* TravelSchedule.app */;
@@ -94,6 +195,11 @@
 			);
 			mainGroup = CEB0DC2E2E13CEA70002B320;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CEB0DC5C2E13D1AB0002B320 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
+				CEB0DC5F2E13D1C10002B320 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
+				CEB0DC672E13D2200002B320 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CEB0DC382E13CEA70002B320 /* Products */;
 			projectDirPath = "";
@@ -109,6 +215,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB0DCBF2E157BBF0002B320 /* Assets.xcassets in Resources */,
+				CEB0DCC02E157BBF0002B320 /* openapi.yaml in Resources */,
+				CEB0DCC12E157BBF0002B320 /* openapi-generator-config.yaml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,10 +228,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB0DCEC2E169FB10002B320 /* CarrierInfoService.swift in Sources */,
+				CEB0DCB92E157BBF0002B320 /* TravelScheduleApp.swift in Sources */,
+				CEB0DCFE2E16C7E70002B320 /* AllStationsService.swift in Sources */,
+				CEB0DCBA2E157BBF0002B320 /* NearestStationsService.swift in Sources */,
+				CEB0DCC72E157C080002B320 /* MainView.swift in Sources */,
+				CEB0DCE52E169B7A0002B320 /* NearestCityService.swift in Sources */,
+				CEB0DCBB2E157BBF0002B320 /* RouteStationsService.swift in Sources */,
+				CEB0DCBC2E157BBF0002B320 /* SchedualBetweenStationsService.swift in Sources */,
+				CEB0DCBD2E157BBF0002B320 /* StationScheduleService.swift in Sources */,
+				CEB0DD062E16CD190002B320 /* CopyrightService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CEB0DC6B2E13D2300002B320 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = CEB0DC6A2E13D2300002B320 /* OpenAPIGenerator */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CEB0DC402E13CEA80002B320 /* Debug */ = {
@@ -261,6 +387,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,6 +416,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,6 +452,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CEB0DC5C2E13D1AB0002B320 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-urlsession";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		CEB0DC5F2E13D1C10002B320 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-runtime";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.2;
+			};
+		};
+		CEB0DC672E13D2200002B320 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-generator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CEB0DC5D2E13D1AB0002B320 /* OpenAPIURLSession */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB0DC5C2E13D1AB0002B320 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */;
+			productName = OpenAPIURLSession;
+		};
+		CEB0DC602E13D1C10002B320 /* OpenAPIRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB0DC5F2E13D1C10002B320 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */;
+			productName = OpenAPIRuntime;
+		};
+		CEB0DC6A2E13D2300002B320 /* OpenAPIGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEB0DC672E13D2200002B320 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */;
+			productName = "plugin:OpenAPIGenerator";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEB0DC2F2E13CEA70002B320 /* Project object */;
 }
