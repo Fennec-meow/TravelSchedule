@@ -25,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE638AD12E252A6B003A3898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CEB0DC372E13CEA70002B320 /* TravelSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB0DCA92E157BBF0002B320 /* TravelScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScheduleApp.swift; sourceTree = "<group>"; };
 		CEB0DCAC2E157BBF0002B320 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +41,199 @@
 		CEB0DCFD2E16C7E70002B320 /* AllStationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStationsService.swift; sourceTree = "<group>"; };
 		CEB0DD052E16CD190002B320 /* CopyrightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyrightService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CE3FED512E3280F400D75A6A /* Exceptions for "TestFetch" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				testFetch.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CE638AF42E253C64003A3898 /* Exceptions for "CitySelectionScreen" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CitySelectionScreen.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CE638B4E2E267B17003A3898 /* Exceptions for "ChoosingCityView" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ChoosingCityView.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEB89E022E2E3B7A000F7132 /* Exceptions for "ErrorScreens" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				NoInternetScreen.swift,
+				ServerErrorScreen.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEB89E172E2E3D8D000F7132 /* Exceptions for "Storis" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DepartureTime.swift,
+				StoriesCell.swift,
+				StoriesModel.swift,
+				StoriesViewModel.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CED83C882E2F8BA1006F1FA4 /* Exceptions for "RouteParameterClarificationsView" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				RouteParameterClarificationsView.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEDE44F12E26BE4C000D1CE7 /* Exceptions for "StationSelectionView" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				StationSelectionView.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEDE45092E279728000D1CE7 /* Exceptions for "FlightSelectionView" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FlightSelectionView.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEDE452D2E27B79A000D1CE7 /* Exceptions for "Model" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				NavCoordinator.swift,
+				RouteEnum.swift,
+				Ticket.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEDE456D2E27E740000D1CE7 /* Exceptions for "SearchTextField" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SearchTextField.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEDE45AB2E292033000D1CE7 /* Exceptions for "TicketFilteringView" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TicketCell.swift,
+				TicketFilteringView.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+		CEDE45B42E292ADF000D1CE7 /* Exceptions for "SettingsView" folder in "TravelSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SettingsView.swift,
+			);
+			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE3FED402E3280C800D75A6A /* TestFetch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CE3FED512E3280F400D75A6A /* Exceptions for "TestFetch" folder in "TravelSchedule" target */,
+			);
+			path = TestFetch;
+			sourceTree = "<group>";
+		};
+		CE638AF12E253C4B003A3898 /* CitySelectionScreen */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CE638AF42E253C64003A3898 /* Exceptions for "CitySelectionScreen" folder in "TravelSchedule" target */,
+			);
+			path = CitySelectionScreen;
+			sourceTree = "<group>";
+		};
+		CE638B452E267AE9003A3898 /* ChoosingCityView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CE638B4E2E267B17003A3898 /* Exceptions for "ChoosingCityView" folder in "TravelSchedule" target */,
+			);
+			path = ChoosingCityView;
+			sourceTree = "<group>";
+		};
+		CEB89DF82E2E3B3B000F7132 /* ErrorScreens */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEB89E022E2E3B7A000F7132 /* Exceptions for "ErrorScreens" folder in "TravelSchedule" target */,
+			);
+			path = ErrorScreens;
+			sourceTree = "<group>";
+		};
+		CEB89E0F2E2E3D21000F7132 /* Storis */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEB89E172E2E3D8D000F7132 /* Exceptions for "Storis" folder in "TravelSchedule" target */,
+			);
+			path = Storis;
+			sourceTree = "<group>";
+		};
+		CED83C802E2F8B77006F1FA4 /* RouteParameterClarificationsView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CED83C882E2F8BA1006F1FA4 /* Exceptions for "RouteParameterClarificationsView" folder in "TravelSchedule" target */,
+			);
+			path = RouteParameterClarificationsView;
+			sourceTree = "<group>";
+		};
+		CEDE44E82E26BE23000D1CE7 /* StationSelectionView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEDE44F12E26BE4C000D1CE7 /* Exceptions for "StationSelectionView" folder in "TravelSchedule" target */,
+			);
+			path = StationSelectionView;
+			sourceTree = "<group>";
+		};
+		CEDE45002E279711000D1CE7 /* FlightSelectionView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEDE45092E279728000D1CE7 /* Exceptions for "FlightSelectionView" folder in "TravelSchedule" target */,
+			);
+			path = FlightSelectionView;
+			sourceTree = "<group>";
+		};
+		CEDE451C2E27B73B000D1CE7 /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEDE452D2E27B79A000D1CE7 /* Exceptions for "Model" folder in "TravelSchedule" target */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEDE45652E27E71E000D1CE7 /* SearchTextField */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEDE456D2E27E740000D1CE7 /* Exceptions for "SearchTextField" folder in "TravelSchedule" target */,
+			);
+			path = SearchTextField;
+			sourceTree = "<group>";
+		};
+		CEDE45A42E292013000D1CE7 /* TicketFilteringView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEDE45AB2E292033000D1CE7 /* Exceptions for "TicketFilteringView" folder in "TravelSchedule" target */,
+			);
+			path = TicketFilteringView;
+			sourceTree = "<group>";
+		};
+		CEDE45AF2E292ABE000D1CE7 /* SettingsView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CEDE45B42E292ADF000D1CE7 /* Exceptions for "SettingsView" folder in "TravelSchedule" target */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CEB0DC342E13CEA70002B320 /* Frameworks */ = {
@@ -129,6 +323,19 @@
 		CEB0DCB82E157BBF0002B320 /* TravelSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				CE3FED402E3280C800D75A6A /* TestFetch */,
+				CED83C802E2F8B77006F1FA4 /* RouteParameterClarificationsView */,
+				CEB89E0F2E2E3D21000F7132 /* Storis */,
+				CEB89DF82E2E3B3B000F7132 /* ErrorScreens */,
+				CEDE45AF2E292ABE000D1CE7 /* SettingsView */,
+				CEDE45A42E292013000D1CE7 /* TicketFilteringView */,
+				CEDE45652E27E71E000D1CE7 /* SearchTextField */,
+				CEDE451C2E27B73B000D1CE7 /* Model */,
+				CEDE45002E279711000D1CE7 /* FlightSelectionView */,
+				CEDE44E82E26BE23000D1CE7 /* StationSelectionView */,
+				CE638B452E267AE9003A3898 /* ChoosingCityView */,
+				CE638AF12E253C4B003A3898 /* CitySelectionScreen */,
+				CE638AD12E252A6B003A3898 /* Info.plist */,
 				CEB0DCAA2E157BBF0002B320 /* App */,
 				CEB0DCAB2E157BBF0002B320 /* Modules */,
 				CEB0DCB22E157BBF0002B320 /* Services */,
@@ -382,9 +589,9 @@
 				DEVELOPMENT_TEAM = FJA62MK9TU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TravelSchedule/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -411,9 +618,9 @@
 				DEVELOPMENT_TEAM = FJA62MK9TU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TravelSchedule/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
