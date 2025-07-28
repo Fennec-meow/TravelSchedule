@@ -52,8 +52,8 @@ struct ChoosingCityView: View {
                 station: station,
                 fromField: fromField
             )
-            Spacer()
         }
+        Spacer()
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
