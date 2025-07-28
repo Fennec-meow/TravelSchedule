@@ -207,7 +207,7 @@ private struct CitySelectionTitle: View {
         ChoosingCityView(
             coordinator: NavCoordinator(),
             station: "Киевский вокзал",
-            fromField: true,
+            fromField: true
         )
     }
 }
