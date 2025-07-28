@@ -41,7 +41,7 @@ private struct ShowStoriesScrollView: View {
     @StateObject var viewModel = StoriesViewModel()
     
     // MARK: body
-    
+
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(alignment: .center, spacing: 12) {
