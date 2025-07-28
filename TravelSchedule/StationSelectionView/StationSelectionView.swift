@@ -52,6 +52,7 @@ struct StationSelectionView: View {
                 fromField: fromField
             )
         }
+        Spacer()
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
