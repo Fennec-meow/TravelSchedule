@@ -34,7 +34,7 @@ struct SearchTextField: View {
                 }
             }
         }
-        .padding(7)
+        .padding(10)
         .background(Color(.lightGray))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding(.horizontal, 16)

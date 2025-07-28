@@ -20,7 +20,6 @@ struct FlightSelectionView: View {
     
     var body: some View {
         VStack {
-            
         }
         .padding()
         .navigationBarBackButtonHidden(true)
