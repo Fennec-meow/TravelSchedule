@@ -128,7 +128,7 @@ private struct ListStations: View {
                     coordinator.selectedCityTo = city
                     coordinator.selectedStationTo = item
                 }
-                dismiss()
+                coordinator.path = NavigationPath()
             }) {
                 HStack {
                     Text("\(item)")

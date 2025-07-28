@@ -73,7 +73,7 @@ private struct ChoosingDirection: View {
                 BackgroundContainsFromAndTo()
                 
                 HStack {
-                    VStack {
+                    VStack(alignment: .leading, spacing: 0) {
                         NavigationLinkWhereFrom(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
                         NavigationLinkWhere(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
                     }
@@ -210,7 +210,9 @@ private struct CityChangeButton: View {
             action()
         }) {
             Image("cityChangeButton")
-                .frame(width: 36, height: 36)
+                .font(.system(size: 24))
+                .foregroundStyle(.blueUni)
+                .padding(6)
                 .background(Color(UIColor(resource: .whiteUni)))
                 .clipShape(RoundedRectangle(cornerRadius: 40))
         }

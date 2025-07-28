@@ -1,5 +1,5 @@
 //
-//  testFetch.swift
+//  TestFetch.swift
 //  TravelSchedule
 //
 //  Created by Kira on 24.07.2025.
@@ -9,7 +9,9 @@ import SwiftUI
 import OpenAPIURLSession
 import OpenAPIRuntime
 
-struct testFetch: View {
+// MARK: - TestFetch
+
+struct TestFetch: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             .onAppear {
@@ -235,5 +237,5 @@ func testFetchCopyright() {
     }
 }
 #Preview {
-    testFetch()
+    TestFetch()
 }

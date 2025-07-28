@@ -25,9 +25,13 @@ struct SearchTextField: View {
             TextField("Введите запрос", text: $text)
                 .autocapitalization(.none)
             
-            Button(action: {}) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundStyle(.grayUni)
+            if !text.isEmpty {
+                Button(action: {
+                    self.text = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.gray)
+                }
             }
         }
         .padding(7)
