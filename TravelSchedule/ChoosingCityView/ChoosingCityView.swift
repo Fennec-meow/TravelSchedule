@@ -53,6 +53,7 @@ struct ChoosingCityView: View {
                 fromField: fromField
             )
         }
+        .navigationBarTitleDisplayMode(.inline)
         Spacer()
         .navigationBarBackButtonHidden(true)
         .toolbar {

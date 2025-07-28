@@ -52,6 +52,7 @@ struct StationSelectionView: View {
                 fromField: fromField
             )
         }
+        .navigationBarTitleDisplayMode(.inline)
         Spacer()
         .navigationBarBackButtonHidden(true)
         .toolbar {
