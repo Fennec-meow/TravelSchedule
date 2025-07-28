@@ -209,12 +209,12 @@ private struct CityChangeButton: View {
             containsFromAndTo.toggle()
             action()
         }) {
-            Image("cityChangeButton")
-                .font(.system(size: 24))
-                .foregroundStyle(.blueUni)
-                .padding(6)
-                .background(Color(UIColor(resource: .whiteUni)))
-                .clipShape(RoundedRectangle(cornerRadius: 40))
+            Image("change")
+                .frame (width: 36, height: 36)
+//                .foregroundStyle(.blueUni)
+//                .padding(6)
+//                .background(Color(UIColor(resource: .whiteUni)))
+                .clipShape(RoundedRectangle(cornerRadius: 25))
         }
         .padding(.trailing, 16)
     }
