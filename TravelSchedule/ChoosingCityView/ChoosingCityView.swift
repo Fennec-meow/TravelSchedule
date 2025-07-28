@@ -52,6 +52,7 @@ struct ChoosingCityView: View {
                 station: station,
                 fromField: fromField
             )
+            Spacer()
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
