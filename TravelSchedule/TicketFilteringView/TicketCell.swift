@@ -23,7 +23,7 @@ struct TicketCell: View {
                 TicketOperatorLogo(ticket: ticket)
                 VStack(alignment: .leading, spacing: 2) {
                     TicketCarrierName(ticket: ticket)
-                    TicketNote(ticket: ticket)
+                    TicketTransfer(ticket: ticket)
                 }
                 Spacer()
                 
@@ -67,14 +67,14 @@ private struct TicketCarrierName: View {
     
     var body: some View {
         Text(ticket.carrierName)
-            .font(.system(size: 17, weight: .regular))
+            .font(.regular17)
             .foregroundColor(.blackUni)
     }
 }
 
-// MARK: - TicketNote
+// MARK: - TicketTransfer
 
-private struct TicketNote: View {
+private struct TicketTransfer: View {
     
     // MARK: Public Property
     
@@ -83,9 +83,9 @@ private struct TicketNote: View {
     // MARK: body
     
     var body: some View {
-        if let note = ticket.note {
-            Text(note)
-                .font(.system(size: 12, weight: .regular))
+        if let transfer = ticket.transfer {
+            Text(transfer)
+                .font(.regular12)
                 .foregroundColor(.redUni)
         }
     }
@@ -103,7 +103,7 @@ private struct TicketDate: View {
     
     var body: some View {
         Text(ticket.date)
-            .font(.system(size: 12, weight: .regular))
+            .font(.regular12)
             .foregroundColor(.blackUni)
     }
 }
@@ -121,19 +121,19 @@ private struct TicketDepartureAndArrivalTime: View {
     var body: some View {
         HStack {
             Text(ticket.departure)
-                .font(.system(size: 17, weight: .regular))
+                .font(.regular17)
                 .foregroundStyle(.blackUni)
             Rectangle()
                 .frame(height: 1)
                 .foregroundStyle(.grayUni)
             Text(ticket.duration)
-                .font(.system(size: 12, weight: .regular))
+                .font(.regular12)
                 .foregroundStyle(.blackUni)
             Rectangle()
                 .frame(height: 1)
                 .foregroundStyle(.grayUni)
             Text(ticket.arrival)
-                .font(.system(size: 17, weight: .regular))
+                .font(.regular17)
                 .foregroundStyle(.blackUni)
         }
     }
@@ -141,13 +141,16 @@ private struct TicketDepartureAndArrivalTime: View {
 
 #Preview {
     TicketCell(ticket: .init(
+        operatorLogo: "RJD",
         carrierName: "РЖД",
+        opf: "ООО «РЖД»",
+        withTransfer: true,
+        transfer: "С пересадкой в Костроме",
         date: "14 января",
         departure: "22:30",
-        arrival: "08:15",
         duration: "20 часов",
-        withTransfer: true,
-        operatorLogo: "RJD",
-        note: "С пересадкой в Костроме"
+        arrival: "08:15",
+        email: "ticket@rzd.ru",
+        phone: "+7 (800) 201-43-56"
     ))
 }

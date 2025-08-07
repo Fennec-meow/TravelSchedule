@@ -43,7 +43,7 @@ struct MainView: View {
                 case .routeParameter:
                     RouteParameterClarificationsView(coordinator: coordinator)
                 case .flightSelection(let ticket):
-                    FlightSelectionView(ticket: ticket)
+                    FlightSelectionView(coordinator: coordinator, ticket: ticket)
                 }
             }
         }

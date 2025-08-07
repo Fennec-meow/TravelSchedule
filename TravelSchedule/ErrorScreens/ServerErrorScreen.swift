@@ -19,7 +19,7 @@ struct ServerErrorScreen: View {
                 .frame(width: 223, height: 223)
                 .clipShape(RoundedRectangle(cornerRadius: 70))
             Text("Ошибка сервера")
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundColor(.blackForTheme)
         }
     }

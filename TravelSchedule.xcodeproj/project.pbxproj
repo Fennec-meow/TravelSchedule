@@ -76,9 +76,12 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				DepartureTime.swift,
+				ProgressBar.swift,
 				StoriesCell.swift,
 				StoriesModel.swift,
+				StoriesView.swift,
 				StoriesViewModel.swift,
+				TimerConfiguration.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -131,12 +134,18 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SettingsView.swift,
+				UserAgreementView.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE0E79FA2E3BA4C800F63A93 /* Extension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		CE3FED402E3280C800D75A6A /* TestFetch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -275,6 +284,7 @@
 		CEB0DCAB2E157BBF0002B320 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				CE0E79FA2E3BA4C800F63A93 /* Extension */,
 				CEB0DCC62E157C080002B320 /* Main */,
 			);
 			path = Modules;
@@ -368,6 +378,9 @@
 			);
 			dependencies = (
 				CEB0DC6B2E13D2300002B320 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CE0E79FA2E3BA4C800F63A93 /* Extension */,
 			);
 			name = TravelSchedule;
 			packageProductDependencies = (

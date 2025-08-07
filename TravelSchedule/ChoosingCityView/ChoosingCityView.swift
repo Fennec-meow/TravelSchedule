@@ -136,7 +136,7 @@ private struct ListCities: View {
             }) {
                 HStack {
                     Text("\(item)")
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     Spacer()
                     
@@ -161,7 +161,7 @@ private struct CityNotFound: View {
     var body: some View {
         VStack {
             Text("Город не найден")
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundColor(.blackForTheme)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -197,7 +197,7 @@ private struct CitySelectionTitle: View {
     
     var body: some View {
         Text("Выбор города")
-            .font(.system(size: 17, weight: .bold))
+            .font(.bold17)
             .foregroundColor(.blackForTheme)
     }
 }

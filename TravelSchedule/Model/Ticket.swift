@@ -11,14 +11,17 @@ import SwiftUI
 
 struct Ticket: Identifiable, Hashable {
     let id = UUID()
+    let operatorLogo: String
     let carrierName: String
+    let opf: String
+    let withTransfer: Bool
+    let transfer: String?
     let date: String
     let departure: String
-    let arrival: String
     let duration: String
-    let withTransfer: Bool
-    let operatorLogo: String
-    let note: String?
+    let arrival: String
+    let email: String
+    let phone: String
 }
 
 // MARK: Extension

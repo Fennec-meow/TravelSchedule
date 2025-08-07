@@ -134,7 +134,7 @@ private struct ListStations: View {
             }) {
                 HStack {
                     Text("\(item)")
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     Spacer()
                     Image("chevronRight")
@@ -158,7 +158,7 @@ private struct StationNotFound: View {
     var body: some View {
         VStack {
             Text("Станция не найдена")
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundColor(.blackForTheme)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -194,7 +194,7 @@ private struct StationSelectionTitle: View {
     
     var body: some View {
         Text("Выбор станции")
-            .font(.system(size: 17, weight: .bold))
+            .font(.bold17)
             .foregroundColor(.blackForTheme)
     }
 }

@@ -36,10 +36,58 @@ struct TicketFilteringView: View {
     @Environment(\.dismiss) var dismiss
     
     let tickets: [Ticket] = [
-        .init(carrierName: "РЖД", date: "14 января", departure: "22:30", arrival: "08:15", duration: "20 часов", withTransfer: true, operatorLogo: "RJD", note: "С пересадкой в Костроме"),
-        .init(carrierName: "ФГК", date: "15 января", departure: "01:15", arrival: "09:00", duration: "9 часов", withTransfer: true, operatorLogo: "FGC", note: nil),
-        .init(carrierName: "Урал логистика", date: "16 января", departure: "12:30", arrival: "21:00", duration: "9 часов", withTransfer: true, operatorLogo: "uralLogistics", note: nil),
-        .init(carrierName: "РЖД", date: "17 января", departure: "22:30", arrival: "08:15", duration: "20 часов", withTransfer: true, operatorLogo: "RJD", note: "С пересадкой в Костроме")
+        .init(
+            operatorLogo: "RJD",
+            carrierName: "РЖД",
+            opf: "ОАО «РЖД»",
+            withTransfer: true,
+            transfer: "С пересадкой в Костроме",
+            date: "14 января",
+            departure: "22:30",
+            duration: "20 часов",
+            arrival: "08:15",
+            email: "ticket@rzd.ru",
+            phone: "+7 (800) 201-43-56"
+        ),
+        .init(
+            operatorLogo: "FGC",
+            carrierName: "ФГК",
+            opf: "АО «ФГК»",
+            withTransfer: true,
+            transfer: nil,
+            date: "15 января",
+            departure: "01:15",
+            duration: "9 часов",
+            arrival: "09:00",
+            email: "info@railfgk.ru",
+            phone: "+7 (800) 250-47-77"
+        ),
+        .init(
+            operatorLogo: "uralLogistics",
+            carrierName: "Урал логистика",
+            opf: "ООО «Урал логистика»",
+            withTransfer: true,
+            transfer: nil,
+            date: "16 января",
+            departure: "12:30",
+            duration: "9 часов",
+            arrival: "21:00",
+            email: "general@ulgroup.ru",
+            phone: "+7 (495) 783-83-83"
+        ),
+        .init(
+            operatorLogo: "RJD",
+            carrierName: "РЖД",
+            opf: "ОАО «РЖД»",
+            withTransfer: true,
+            transfer: "С пересадкой в Костроме",
+            date: "17 января",
+            departure: "22:30",
+            duration: "20 часов",
+            arrival: "08:15",
+            email: "ticket@rzd.ru",
+            phone: "+7 (800) 201-43-56"
+        )
     ]
     
     // MARK: body
@@ -76,7 +124,7 @@ private struct FromWhereAndToWhereTitle: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundStyle(.blackForTheme)
                 .multilineTextAlignment(.leading)
             Spacer()
@@ -121,7 +169,7 @@ private struct AreNoOptions: View {
     var body: some View {
         VStack {
             Text("Вариантов нет")
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundStyle(.blackForTheme)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -164,7 +212,7 @@ private struct SpecifyTimeButton: View {
         }) {
             HStack(spacing: 4) {
                 Text("Уточнить время")
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.bold17)
                     .foregroundStyle(.whiteUni)
                 
                 if coordinator.isFiltersValid {
