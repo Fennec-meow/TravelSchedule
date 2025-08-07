@@ -1,10 +1,3 @@
-//
-//  Font+Extension.swift
-//  TravelSchedule
-//
-//  Created by Kira on 31.07.2025.
-//
-
 import SwiftUI
 
 extension Font {

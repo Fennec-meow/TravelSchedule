@@ -46,6 +46,7 @@
 		CE3FED512E3280F400D75A6A /* Exceptions for "TestFetch" folder in "TravelSchedule" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Apikey.swift,
 				TestFetch.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
@@ -135,6 +136,7 @@
 			membershipExceptions = (
 				SettingsView.swift,
 				UserAgreementView.swift,
+				WebView.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};

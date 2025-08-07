@@ -1,10 +1,3 @@
-//
-//  FlightSelectionView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 16.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - FlightSelectionView
@@ -43,9 +36,7 @@ struct FlightSelectionView: View {
                         }
                     }
                 }
-            
-//                    Text(URL(string: ticket.email))
-                    
+                                
                 VStack(alignment: .leading) {
                     Text("Телефон")
                         .font(.regular17)
@@ -61,7 +52,7 @@ struct FlightSelectionView: View {
             Spacer()
         }
         .padding(.init(top: 0, leading: -16, bottom: 0, trailing: 16))
-
+        
         .padding()
         .navigationBarBackButtonHidden(true)
         .toolbar {

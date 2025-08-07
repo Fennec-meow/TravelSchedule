@@ -1,10 +1,3 @@
-//
-//  NavCoordinator.swift
-//  TravelSchedule
-//
-//  Created by Kira on 15.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - NavCoordinator

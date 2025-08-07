@@ -1,10 +1,3 @@
-//
-//  StoriesModel.swift
-//  TravelSchedule
-//
-//  Created by Kira on 21.07.2025.
-//
-
 import Foundation
 import SwiftUI
 
@@ -52,53 +45,3 @@ struct StoriesModel: Identifiable, Hashable {
         StoriesModel(storyName: "eighteenStory", title: "", description: "", imageName: ["eighteenStory"])
     ]
 }
-
-
-
-
-//struct StoriesModel: Identifiable, Hashable {
-//    let id = UUID()
-//    let storyName: String
-//    let title: String
-//    let description: String
-//
-//    static let history1: [StoriesModel] = [
-//        StoriesModel(storyName: "firstStory", title: "", description: ""),
-//        StoriesModel(storyName: "secondStory", title: "", description: "")
-//    ]
-//    static let history2: [StoriesModel] = [
-//        StoriesModel(storyName: "thirdStory", title: "", description: ""),
-//        StoriesModel(storyName: "fourthStory", title: "", description: ""),
-//    ]
-//    static let history3: [StoriesModel] = [
-//        StoriesModel(storyName: "fifthStory", title: "", description: ""),
-//        StoriesModel(storyName: "sixthStory", title: "", description: "")
-//    ]
-//    static let history4: [StoriesModel] = [
-//        StoriesModel(storyName: "seventhStory", title: "", description: ""),
-//        StoriesModel(storyName: "eightStory", title: "", description: "")
-//    ]
-//    static let history5: [StoriesModel] = [
-//        StoriesModel(storyName: "ninthStory", title: "", description: ""),
-//        StoriesModel(storyName: "tenthStory", title: "", description: "")
-//    ]
-//    static let history6: [StoriesModel] = [
-//        StoriesModel(storyName: "elevenStory", title: "", description: ""),
-//        StoriesModel(storyName: "twelveStory", title: "", description: "")
-//    ]
-//    static let history7: [StoriesModel] = [
-//        StoriesModel(storyName: "thirteenStory", title: "", description: ""),
-//        StoriesModel(storyName: "fourteenStory", title: "", description: "")
-//    ]
-//    static let history8: [StoriesModel] = [
-//        StoriesModel(storyName: "fifteenStory", title: "", description: ""),
-//        StoriesModel(storyName: "sixteenStory", title: "", description: "")
-//    ]
-//    static let history9: [StoriesModel] = [
-//        StoriesModel(storyName: "seventeenStory", title: "", description: ""),
-//        StoriesModel(storyName: "eighteenStory", title: "", description: "")
-//    ]
-//
-//
-//}
-

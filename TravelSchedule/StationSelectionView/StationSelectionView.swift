@@ -1,10 +1,3 @@
-//
-//  StationSelectionView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 15.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - StationSelectionView
@@ -54,15 +47,15 @@ struct StationSelectionView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton(action: { dismiss() })
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(action: { dismiss() })
+                }
+                ToolbarItem(placement: .principal) {
+                    StationSelectionTitle()
+                }
             }
-            ToolbarItem(placement: .principal) {
-                StationSelectionTitle()
-            }
-        }
     }
 }
 

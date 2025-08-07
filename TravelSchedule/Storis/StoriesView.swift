@@ -1,29 +1,20 @@
-//
-//  StoriesView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 04.08.2025.
-//
-
 import SwiftUI
 import Combine
 
 struct StoriesView: View {
     let stories: [StoriesModel]
     let onViewed: (Set<Int>) -> Void
+    
     @Environment(\.dismiss) var dismiss
     
-    @State private var viewedIndices: Set<Int> = []
-
     @Binding var isViewed: Bool
-
+    
     @State private var timer: Timer.TimerPublisher
     @State private var selection: Int
     @State private var currentImageIndex: Int = 0
     @State private var progress: CGFloat = 0
     @State private var timerCancellable: Cancellable?
     @State private var localViewedStories: Set<Int> = []
-    
     @State private var storyGap: CGFloat = .zero
     
     private var configuration: TimerConfiguration
@@ -46,7 +37,6 @@ struct StoriesView: View {
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            
             if let story = currentStory {
                 GeometryReader { geo in
                     ZStack {
@@ -64,8 +54,8 @@ struct StoriesView: View {
                                 numberOfSections: stories.count,
                                 progress: $progress
                             )
-                                .padding(.top, 40)
-                                .padding(.horizontal, 16)
+                            .padding(.top, 40)
+                            .padding(.horizontal, 16)
                             Spacer()
                         }
                         
@@ -100,7 +90,7 @@ struct StoriesView: View {
                                     } else {
                                         goToNextStory()
                                     }
-                                   progress = storyGap
+                                    progress = storyGap
                                     storyGap += 1.0/CGFloat(stories.count)
                                     restartTimer()
                                 }

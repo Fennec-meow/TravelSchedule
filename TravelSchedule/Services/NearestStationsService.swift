@@ -1,10 +1,3 @@
-//
-//  NearestStationsService.swift
-//  TravelSchedule
-//
-//  Created by Kira on 01.07.2025.
-//
-
 import OpenAPIRuntime
 import OpenAPIURLSession
 

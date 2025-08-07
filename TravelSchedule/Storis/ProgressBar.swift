@@ -1,10 +1,3 @@
-//
-//  ProgressBar.swift
-//  TravelSchedule
-//
-//  Created by Kira on 04.08.2025.
-//
-
 import SwiftUI
 
 extension CGFloat {
@@ -15,14 +8,14 @@ extension CGFloat {
 struct ProgressBar: View {
     let numberOfSections: Int
     @Binding var progress: CGFloat
-
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: .progressBarCornerRadius)
                     .frame(width: geometry.size.width, height: .progressBarHeight)
                     .foregroundColor(.white)
-
+                
                 RoundedRectangle(cornerRadius: .progressBarCornerRadius)
                     .frame(
                         width: min(
@@ -42,7 +35,7 @@ struct ProgressBar: View {
 
 private struct MaskView: View {
     let numberOfSections: Int
-
+    
     var body: some View {
         HStack {
             ForEach(0..<numberOfSections, id: \.self) { _ in
@@ -61,11 +54,11 @@ private struct MaskFragmentView: View {
     }
 }
 
-//#Preview {
-//    Color.story1Background
-//        .ignoresSafeArea()
-//        .overlay(
-//            ProgressBar(numberOfSections: 5, progress: 0.5)
-//                .padding()
-//        )
-//}
+#Preview {
+    Color.blackUni
+        .ignoresSafeArea()
+        .overlay(
+            ProgressBar(numberOfSections: 5, progress: .constant(0.5))
+                .padding()
+        )
+}

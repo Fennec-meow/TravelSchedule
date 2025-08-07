@@ -1,10 +1,3 @@
-//
-//  TestFetch.swift
-//  TravelSchedule
-//
-//  Created by Kira on 24.07.2025.
-//
-
 import SwiftUI
 import OpenAPIURLSession
 import OpenAPIRuntime
@@ -40,7 +33,7 @@ func testFetchStations() {
             
             let service = NearestStationsService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             
             print("Fetching stations...")
@@ -69,7 +62,7 @@ func testFetchSegments() {
             
             let service = SchedualBetweenStationsService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let segments = try await service.getSchedualBetweenStations(
@@ -96,7 +89,7 @@ func testFetchScheduleResponse() {
             
             let service = StationScheduleService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let scheduleResponse = try await service.getStationSchedule(
@@ -122,7 +115,7 @@ func testFetchThreadStationsResponse() {
             
             let service = RouteStationsService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let threadStationsResponse = try await service.getRouteStations(
@@ -148,7 +141,7 @@ func testFetchNearestCityResponse() {
             
             let service = NearestCityService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let nearestCityResponse = try await service.getNearestCity(
@@ -175,7 +168,7 @@ func testFetchCarrierResponse() {
             
             let service = CarrierInfoService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let carrierResponse = try await service.getCarrierInfo(
@@ -201,7 +194,7 @@ func testFetchAllStationsResponse() {
             
             let service = AllStationsService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let allStationsResponse = try await service.getAllStations()
@@ -225,7 +218,7 @@ func testFetchCopyright() {
             
             let service = CopyrightService(
                 client: client,
-                apikey: "dea87870-927b-418f-a06d-f0eea98e84a4"
+                apikey: Apikey.apiKey
             )
             print("Fetching service...")
             let copyright = try await service.getCopyright()

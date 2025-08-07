@@ -1,10 +1,3 @@
-//
-//  MainView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 01.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - MainView
@@ -15,7 +8,7 @@ struct MainView: View {
     
     @StateObject var coordinator = NavCoordinator()
     @State  var viewedStories: Bool
-
+    
     // MARK: body
     
     var body: some View {
@@ -58,5 +51,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView( viewedStories: false)
+    MainView(viewedStories: false)
 }

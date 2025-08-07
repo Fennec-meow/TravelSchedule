@@ -1,10 +1,3 @@
-//
-//  RouteParameterClarificationsView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 22.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - RouteParameterClarificationsView

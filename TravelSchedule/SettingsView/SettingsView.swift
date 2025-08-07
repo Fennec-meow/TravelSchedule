@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 17.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - SettingsView
@@ -32,18 +25,14 @@ struct SettingsView: View {
                     Text("Пользовательское соглашение")
                         .font(.regular17)
                         .foregroundColor(.blackForTheme)
-                    
                     Spacer()
-                    
                     Image(.chevronRight)
                         .renderingMode(.template)
                         .foregroundStyle(.blackForTheme)
                 }
             }
             .padding(.horizontal, 16)
-            
             Spacer()
-            
             VStack(alignment: .center, spacing: 16) {
                 Group {
                     Text("Приложение использует API «Яндекс.Расписания»")

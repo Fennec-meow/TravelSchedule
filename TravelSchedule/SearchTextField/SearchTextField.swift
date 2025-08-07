@@ -1,10 +1,3 @@
-//
-//  SearchTextField.swift
-//  TravelSchedule
-//
-//  Created by Kira on 16.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - SearchTextField
@@ -29,7 +22,7 @@ struct SearchTextField: View {
                 Button(action: {
                     self.text = ""
                 }) {
-                    Image(systemName: "xmark.circle.fill")
+                    Image(.chevronLeft)
                         .foregroundStyle(.gray)
                 }
             }

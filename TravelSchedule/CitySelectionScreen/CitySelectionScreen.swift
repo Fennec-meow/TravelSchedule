@@ -1,11 +1,3 @@
-//
-//  CitySelectionScreen.swift
-//  TravelSchedule
-//
-//  Created by Kira on 14.07.2025.
-//
-
-
 import SwiftUI
 
 // MARK: - CitySelectionScreen
@@ -21,7 +13,7 @@ struct CitySelectionScreen: View {
     @ObservedObject var coordinator: NavCoordinator
     @State private var containsFromAndTo = true
     @State  var viewedStories: Bool
-
+    
     
     // MARK: body
     
@@ -45,7 +37,7 @@ private struct ShowStoriesScrollView: View {
     
     @StateObject private var viewModel = StoriesViewModel()
     @State  var viewedStories: Bool
-
+    
     
     // MARK: body
     
@@ -254,5 +246,8 @@ private struct TheFindButton: View {
 }
 
 #Preview {
-    MainView(coordinator: NavCoordinator(), viewedStories: false)
+    MainView(
+        coordinator: NavCoordinator(),
+        viewedStories: false
+    )
 }

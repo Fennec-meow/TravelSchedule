@@ -1,10 +1,3 @@
-//
-//  AllStationsService.swift
-//  TravelSchedule
-//
-//  Created by Kira on 03.07.2025.
-//
-
 import OpenAPIRuntime
 import OpenAPIURLSession
 import Foundation

@@ -1,10 +1,3 @@
-//
-//  ChoosingCityView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 15.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - ChoosingCityView
@@ -55,15 +48,15 @@ struct ChoosingCityView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton(action: { dismiss() })
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(action: { dismiss() })
+                }
+                ToolbarItem(placement: .principal) {
+                    CitySelectionTitle()
+                }
             }
-            ToolbarItem(placement: .principal) {
-                CitySelectionTitle()
-            }
-        }
     }
 }
 

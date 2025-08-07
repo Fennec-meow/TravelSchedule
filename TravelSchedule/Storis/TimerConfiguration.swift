@@ -1,16 +1,9 @@
-//
-//  TimerConfiguration.swift
-//  TravelSchedule
-//
-//  Created by Kira on 04.08.2025.
-//
-
 import Foundation
 
 struct TimerConfiguration {
     let timerTickInternal: TimeInterval
     let progressPerTick: CGFloat
-
+    
     init(
         storiesCount: Int,
         secondsPerStory: TimeInterval = 5,
