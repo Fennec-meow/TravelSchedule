@@ -85,7 +85,8 @@ struct StoriesView: View {
                                             currentImageIndex = stories[selection].imageName.count - 1
                                         }
                                     }
-                                    progress = 0
+                                    progress = storyGap - 1.0/CGFloat(stories.count) * 2
+                                    storyGap -= 1.0/CGFloat(stories.count)
                                     restartTimer()
                                 }
                             
@@ -99,7 +100,8 @@ struct StoriesView: View {
                                     } else {
                                         goToNextStory()
                                     }
-//                                    progress = 0
+                                   progress = storyGap
+                                    storyGap += 1.0/CGFloat(stories.count)
                                     restartTimer()
                                 }
                         }
@@ -111,7 +113,6 @@ struct StoriesView: View {
                                     dismiss()
                                 }) {
                                     Image(.close)
-//                                      .resizable()
                                         .frame(width: 30, height: 30)
                                         .foregroundColor(.blackUni)
                                         .padding(.top,57)
@@ -174,7 +175,11 @@ struct StoriesView: View {
     }
 }
 
-//#Preview {
-//    let viewModel = StoriesViewModel()
-//    StoriesView(onViewed: { _ in }, stories: viewModel.storiesGroups.first ?? [], initialIndex: 0, isViewed: false)
-//}
+#Preview {
+    let viewModel = StoriesViewModel()
+    StoriesView(
+        onViewed: { _ in },
+        stories: viewModel.storiesGroups.first ?? [],
+        initialIndex: 0, isViewed: .constant(false)
+    )
+}
