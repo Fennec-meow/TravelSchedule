@@ -13,6 +13,10 @@ struct StoriesView: View {
     let onViewed: (Set<Int>) -> Void
     @Environment(\.dismiss) var dismiss
     
+    @State private var viewedIndices: Set<Int> = []
+
+    @Binding var isViewed: Bool
+
     @State private var timer: Timer.TimerPublisher
     @State private var selection: Int
     @State private var currentImageIndex: Int = 0
@@ -22,11 +26,12 @@ struct StoriesView: View {
     
     @State private var storyGap: CGFloat = .zero
     
-    private let configuration: TimerConfiguration
+    private var configuration: TimerConfiguration
     
-    init(onViewed: @escaping (Set<Int>) -> Void, stories: [StoriesModel], initialIndex: Int) {
+    init(onViewed: @escaping (Set<Int>) -> Void, stories: [StoriesModel], initialIndex: Int, isViewed: Binding<Bool>) {
         self.onViewed = onViewed
         self.stories = stories
+        self._isViewed = isViewed
         storyGap = 1.0/CGFloat(stories.count)
         _selection = State(initialValue: initialIndex)
         configuration = TimerConfiguration(storiesCount: stories.count)
@@ -159,7 +164,9 @@ struct StoriesView: View {
         if selection < stories.count - 1 {
             selection += 1
             progress += 1
+            localViewedStories.insert(selection)
         } else {
+            isViewed = true
             onViewed(localViewedStories)
             dismiss()
         }
@@ -167,7 +174,7 @@ struct StoriesView: View {
     }
 }
 
-#Preview {
-    let viewModel = StoriesViewModel()
-    StoriesView(onViewed: { _ in }, stories: viewModel.storiesGroups.first ?? [], initialIndex: 0)
-}
+//#Preview {
+//    let viewModel = StoriesViewModel()
+//    StoriesView(onViewed: { _ in }, stories: viewModel.storiesGroups.first ?? [], initialIndex: 0, isViewed: false)
+//}

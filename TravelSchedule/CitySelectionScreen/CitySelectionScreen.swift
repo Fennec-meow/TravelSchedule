@@ -20,13 +20,15 @@ struct CitySelectionScreen: View {
     
     @ObservedObject var coordinator: NavCoordinator
     @State private var containsFromAndTo = true
+    @State  var viewedStories: Bool
+
     
     // MARK: body
     
     var body: some View {
         NavigationView {
             VStack(spacing: 44) {
-                ShowStoriesScrollView()
+                ShowStoriesScrollView(viewedStories: viewedStories)
                 
                 ChoosingDirection(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
             }
@@ -42,6 +44,8 @@ private struct ShowStoriesScrollView: View {
     // MARK: Public Property
     
     @StateObject private var viewModel = StoriesViewModel()
+    @State  var viewedStories: Bool
+
     
     // MARK: body
     
@@ -49,7 +53,7 @@ private struct ShowStoriesScrollView: View {
         ScrollView(.horizontal) {
             LazyHStack(alignment: .center, spacing: 12) {
                 ForEach(viewModel.storiesGroups.compactMap { $0.isEmpty ? nil : $0 }, id: \.self) { storiesGroup in
-                    StoriesCell(stories: storiesGroup)
+                    StoriesCell(stories: storiesGroup, isViewed: $viewedStories)
                 }
             }
         }
@@ -250,5 +254,5 @@ private struct TheFindButton: View {
 }
 
 #Preview {
-    MainView(coordinator: NavCoordinator())
+    MainView(coordinator: NavCoordinator(), viewedStories: false)
 }

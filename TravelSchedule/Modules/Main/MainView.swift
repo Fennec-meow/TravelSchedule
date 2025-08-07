@@ -14,13 +14,14 @@ struct MainView: View {
     // MARK: Public Property
     
     @StateObject var coordinator = NavCoordinator()
-    
+    @State  var viewedStories: Bool
+
     // MARK: body
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             TabView {
-                CitySelectionScreen(coordinator: coordinator)
+                CitySelectionScreen(coordinator: coordinator, viewedStories: viewedStories)
                     .tabItem {
                         Image(.schedule)
                             .renderingMode(.template)
@@ -57,5 +58,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView( viewedStories: false)
 }

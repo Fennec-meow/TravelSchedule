@@ -13,7 +13,7 @@ struct TravelScheduleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewedStories: false)
                 .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
