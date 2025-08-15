@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: Ticket
 
-struct Ticket: Identifiable, Hashable {
+struct Ticket: Identifiable, Hashable, Sendable {
     let id = UUID()
     let operatorLogo: String
     let carrierName: String

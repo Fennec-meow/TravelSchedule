@@ -3,18 +3,21 @@ import SwiftUI
 // MARK: - SettingsView
 
 struct SettingsView: View {
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @Bindable private var viewModel = SettingsViewModel.shared
     @Environment(\.colorScheme) private var systemColorScheme
     
     var body: some View {
         VStack {
-            Toggle(isOn: $isDarkMode) {
+            Toggle(isOn: $viewModel.isDarkMode) {
                 Text("Темная тема")
                     .font(.regular17)
                     .foregroundStyle(.blackForTheme)
             }
             .onAppear {
-                isDarkMode = systemColorScheme == .dark
+                viewModel.resetChangingTheme(systemColorScheme == .dark)
+            }
+            .onChange(of: systemColorScheme) { _, newColorScheme in
+                viewModel.resetChangingTheme(systemColorScheme == .dark)
             }
             .tint(.blueUni)
             .padding(.vertical, 19)

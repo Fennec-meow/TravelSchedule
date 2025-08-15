@@ -35,7 +35,7 @@ private struct ShowStoriesScrollView: View {
     
     // MARK: Public Property
     
-    @StateObject private var viewModel = StoriesViewModel()
+    @StateObject private var viewModel = StoriesViewModel() ///
     @State  var viewedStories: Bool
     
     
