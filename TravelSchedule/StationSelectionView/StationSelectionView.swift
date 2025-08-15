@@ -1,10 +1,3 @@
-//
-//  StationSelectionView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 15.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - StationSelectionView
@@ -54,15 +47,15 @@ struct StationSelectionView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton(action: { dismiss() })
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(action: { dismiss() })
+                }
+                ToolbarItem(placement: .principal) {
+                    StationSelectionTitle()
+                }
             }
-            ToolbarItem(placement: .principal) {
-                StationSelectionTitle()
-            }
-        }
     }
 }
 
@@ -134,7 +127,7 @@ private struct ListStations: View {
             }) {
                 HStack {
                     Text("\(item)")
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     Spacer()
                     Image("chevronRight")
@@ -158,7 +151,7 @@ private struct StationNotFound: View {
     var body: some View {
         VStack {
             Text("Станция не найдена")
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundColor(.blackForTheme)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -194,7 +187,7 @@ private struct StationSelectionTitle: View {
     
     var body: some View {
         Text("Выбор станции")
-            .font(.system(size: 17, weight: .bold))
+            .font(.bold17)
             .foregroundColor(.blackForTheme)
     }
 }

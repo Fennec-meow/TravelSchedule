@@ -1,10 +1,3 @@
-//
-//  MainView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 01.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - MainView
@@ -14,13 +7,14 @@ struct MainView: View {
     // MARK: Public Property
     
     @StateObject var coordinator = NavCoordinator()
+    @State  var viewedStories: Bool
     
     // MARK: body
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             TabView {
-                CitySelectionScreen(coordinator: coordinator)
+                CitySelectionScreen(coordinator: coordinator, viewedStories: viewedStories)
                     .tabItem {
                         Image(.schedule)
                             .renderingMode(.template)
@@ -43,7 +37,7 @@ struct MainView: View {
                 case .routeParameter:
                     RouteParameterClarificationsView(coordinator: coordinator)
                 case .flightSelection(let ticket):
-                    FlightSelectionView(ticket: ticket)
+                    FlightSelectionView(coordinator: coordinator, ticket: ticket)
                 }
             }
         }
@@ -57,5 +51,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(viewedStories: false)
 }

@@ -1,41 +1,47 @@
-//
-//  StoriesCell.swift
-//  TravelSchedule
-//
-//  Created by Kira on 21.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - StoriesCell
 
 struct StoriesCell: View {
-    
-    // MARK: Public Property
-    
-    var story: StoriesModel
+    var stories: [StoriesModel]
+    @State private var viewedStories: Set<Int> = []
+    @Binding var isViewed: Bool
     let storiesHeight: Double = 140
     let storiesWidth: Double = 92
     
-    // MARK: body
-    
     var body: some View {
-        ZStack {
-            Image(story.storyName)
-                .resizable()
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .frame(width: storiesWidth, height: storiesHeight)
-            
-            RoundedRectangle(cornerRadius: 16)
-                .strokeBorder(.blueUni, lineWidth: 4)
-                .frame(width: storiesWidth, height: storiesHeight)
+        NavigationLink(destination: StoriesView(
+            onViewed: { viewedIndices in
+                viewedStories.formUnion(viewedIndices)
+            },
+            stories: stories,
+            initialIndex: 0,
+            isViewed: $isViewed
+        )) {
+            ZStack {
+                if let firstStory = stories.first, let imageName = firstStory.imageName.first {
+                    Image(imageName)
+                        .resizable()
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .frame(width: storiesWidth, height: storiesHeight)
+                        .opacity(viewedStories.contains(0) ? 0.5 : 1.0) // яркость зависит от просмотра
+                } else {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color.gray)
+                        .frame(width: storiesWidth, height: storiesHeight)
+                        .opacity(viewedStories.contains(0) ? 0.5 : 1.0)
+                }
+                
+                // Обводка: показывать, если история НЕ просмотрена
+                RoundedRectangle(cornerRadius: 16)
+                    .strokeBorder(viewedStories.contains(0) ? Color.clear : .blue, lineWidth: 4)
+                    .animation(.easeInOut, value: viewedStories)
+            }
         }
+        .buttonStyle(PlainButtonStyle())
     }
-}
-
-#Preview {
-    let stories = StoriesModel(storyName: "firstStory")
-    return StoriesCell(story: stories)
-        .padding()
-        .background(.background)
+    
+    func storyGroup(for story: StoriesModel) -> [StoriesModel] {
+        return [story]
+    }
 }

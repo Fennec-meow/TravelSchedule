@@ -1,10 +1,3 @@
-//
-//  ChoosingCityView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 15.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - ChoosingCityView
@@ -55,15 +48,15 @@ struct ChoosingCityView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                BackButton(action: { dismiss() })
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    BackButton(action: { dismiss() })
+                }
+                ToolbarItem(placement: .principal) {
+                    CitySelectionTitle()
+                }
             }
-            ToolbarItem(placement: .principal) {
-                CitySelectionTitle()
-            }
-        }
     }
 }
 
@@ -136,7 +129,7 @@ private struct ListCities: View {
             }) {
                 HStack {
                     Text("\(item)")
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     Spacer()
                     
@@ -161,7 +154,7 @@ private struct CityNotFound: View {
     var body: some View {
         VStack {
             Text("Город не найден")
-                .font(.system(size: 24, weight: .bold))
+                .font(.bold24)
                 .foregroundColor(.blackForTheme)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
@@ -197,7 +190,7 @@ private struct CitySelectionTitle: View {
     
     var body: some View {
         Text("Выбор города")
-            .font(.system(size: 17, weight: .bold))
+            .font(.bold17)
             .foregroundColor(.blackForTheme)
     }
 }

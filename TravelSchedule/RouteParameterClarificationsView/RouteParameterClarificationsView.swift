@@ -1,10 +1,3 @@
-//
-//  RouteParameterClarificationsView.swift
-//  TravelSchedule
-//
-//  Created by Kira on 22.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - RouteParameterClarificationsView
@@ -51,7 +44,7 @@ private struct DepartureTimeTitle: View {
     
     var body: some View {
         Text("Время отправления")
-            .font(.system(size: 24, weight: .bold))
+            .font(.bold24)
             .foregroundStyle(.blackForTheme)
     }
 }
@@ -70,7 +63,7 @@ private struct AnnouncementDepartureTime: View {
         ForEach(DepartureTime.allCases, id: \.self) { time in
             HStack {
                 Text(time.rawValue)
-                    .font(.system(size: 17, weight: .regular))
+                    .font(.regular17)
                     .foregroundStyle(.blackForTheme)
                 Spacer()
                 Button(action: {
@@ -102,7 +95,7 @@ private struct TransferOptionsTitle: View {
     
     var body: some View {
         Text("Показывать варианты с пересадками")
-            .font(.system(size: 20, weight: .bold))
+            .font(.bold24)
             .padding(.top, 16)
     }
 }
@@ -119,7 +112,7 @@ private struct ShowTransfers: View {
     
     var body: some View {
         Text("Да")
-            .font(.system(size: 17, weight: .regular))
+            .font(.regular17)
             .foregroundStyle(.blackForTheme)
         Spacer()
         Button(action: { coordinator.showTransfers = true }) {
@@ -148,7 +141,7 @@ private struct NotShowTransfers: View {
     
     var body: some View {
         Text("Нет")
-            .font(.system(size: 17, weight: .regular))
+            .font(.regular17)
             .foregroundStyle(.blackForTheme)
         Spacer()
         Button(action: { coordinator.showTransfers = false }) {
@@ -179,7 +172,7 @@ private struct ApplyButton: View {
         if coordinator.isFiltersValid {
             Button(action: {coordinator.path.removeLast()}) {
                 Text("Применить")
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.bold17)
                     .foregroundStyle(.whiteUni)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 20)

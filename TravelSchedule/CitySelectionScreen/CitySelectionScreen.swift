@@ -1,10 +1,3 @@
-//
-//  CitySelectionScreen.swift
-//  TravelSchedule
-//
-//  Created by Kira on 14.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - CitySelectionScreen
@@ -19,16 +12,20 @@ struct CitySelectionScreen: View {
     
     @ObservedObject var coordinator: NavCoordinator
     @State private var containsFromAndTo = true
+    @State  var viewedStories: Bool
+    
     
     // MARK: body
     
     var body: some View {
-        VStack(spacing: 44) {
-            ShowStoriesScrollView()
-            
-            ChoosingDirection(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
+        NavigationView {
+            VStack(spacing: 44) {
+                ShowStoriesScrollView(viewedStories: viewedStories)
+                
+                ChoosingDirection(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
+            }
+            .padding(.top, 24)
         }
-        .padding(.top, 24)
     }
 }
 
@@ -38,15 +35,17 @@ private struct ShowStoriesScrollView: View {
     
     // MARK: Public Property
     
-    @StateObject var viewModel = StoriesViewModel()
+    @StateObject private var viewModel = StoriesViewModel()
+    @State  var viewedStories: Bool
+    
     
     // MARK: body
-
+    
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(alignment: .center, spacing: 12) {
-                ForEach(viewModel.stories) { story in
-                    StoriesCell(story: story)
+                ForEach(viewModel.storiesGroups.compactMap { $0.isEmpty ? nil : $0 }, id: \.self) { storiesGroup in
+                    StoriesCell(stories: storiesGroup, isViewed: $viewedStories)
                 }
             }
         }
@@ -210,7 +209,7 @@ private struct CityChangeButton: View {
             action()
         }) {
             Image(.cityChangeButton)
-//                .resizable()
+            //                .resizable()
                 .frame(width: 36, height: 36)
                 .background(Color(UIColor(resource: .whiteUni)))
                 .clipShape(RoundedRectangle(cornerRadius: 24))
@@ -235,7 +234,7 @@ private struct TheFindButton: View {
                 coordinator.path.append(RouteEnum.ticketFiltering)
             }) {
                 Text("Найти")
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.bold17)
                     .foregroundStyle(.whiteUni)
             }
             .padding(.horizontal, 47.5)
@@ -247,5 +246,8 @@ private struct TheFindButton: View {
 }
 
 #Preview {
-    MainView(coordinator: NavCoordinator())
+    MainView(
+        coordinator: NavCoordinator(),
+        viewedStories: false
+    )
 }
