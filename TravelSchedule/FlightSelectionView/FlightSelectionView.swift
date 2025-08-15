@@ -8,18 +8,17 @@ struct FlightSelectionView: View {
     
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-    var ticket: Ticket
-    
+    @ObservedObject var viewModel: FlightSelectionViewModel
     // MARK: body
     
     var body: some View {
         VStack(alignment: .leading) {
-            Image(ticket.operatorLogo)
+            Image(viewModel.operatorLogo)
                 .resizable()
                 .scaledToFit()
                 .frame(minWidth: 343, maxHeight: 104)
             
-            Text(ticket.opf)
+            Text(viewModel.opf)
                 .font(.bold24)
                 .padding(.vertical, 16)
                 .foregroundColor(.blackForTheme)
@@ -30,9 +29,9 @@ struct FlightSelectionView: View {
                         .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     
-                    if let email = URL(string: ticket.email) {
+                    if let email = URL(string: viewModel.email) {
                         Link(destination: email) {
-                            Text(ticket.email)
+                            Text(viewModel.email)
                         }
                     }
                 }
@@ -42,9 +41,9 @@ struct FlightSelectionView: View {
                         .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     
-                    if let phone = URL(string: ticket.phone) {
+                    if let phone = URL(string: viewModel.phone) {
                         Link(destination: phone) {
-                            Text(ticket.phone)
+                            Text(viewModel.phone)
                         }
                     }
                 }
@@ -75,17 +74,35 @@ struct FlightSelectionView: View {
 #Preview {
     FlightSelectionView(
         coordinator: NavCoordinator(),
-        ticket: Ticket(
-            operatorLogo: "RJD",
-            carrierName: "РЖД",
-            opf: "ООО «РЖД»",
-            withTransfer: true,
-            transfer: "С пересадкой в Костроме",
-            date: "14 января",
-            departure: "22:30",
-            duration: "20 часов",
-            arrival: "08:15",
-            email: "ticket@rzd.ru",
-            phone: "+7 (800) 201-43-56"
-        ))
+        viewModel: FlightSelectionViewModel(ticket: Ticket(
+        operatorLogo: "RJD",
+        carrierName: "РЖД",
+        opf: "ООО «РЖД»",
+        withTransfer: true,
+        transfer: "С пересадкой в Костроме",
+        date: "14 января",
+        departure: "22:30",
+        duration: "20 часов",
+        arrival: "08:15",
+        email: "ticket@rzd.ru",
+        phone: "+7 (800) 201-43-56"
+    ))
+    )
 }
+//#Preview {
+//    FlightSelectionView(
+//        coordinator: NavCoordinator(),
+//        ticket: Ticket(
+//            operatorLogo: "RJD",
+//            carrierName: "РЖД",
+//            opf: "ООО «РЖД»",
+//            withTransfer: true,
+//            transfer: "С пересадкой в Костроме",
+//            date: "14 января",
+//            departure: "22:30",
+//            duration: "20 часов",
+//            arrival: "08:15",
+//            email: "ticket@rzd.ru",
+//            phone: "+7 (800) 201-43-56"
+//        ))
+//}

@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-class StoriesViewModel: ObservableObject {
+final class StoriesViewModel: ObservableObject {
     @Published var storiesGroups: [[StoriesModel]] = [
         StoriesModel.history1,
         StoriesModel.history2,

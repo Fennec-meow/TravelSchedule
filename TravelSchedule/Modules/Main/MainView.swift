@@ -30,14 +30,14 @@ struct MainView: View {
                 switch route {
                 case .choosingCity(let station, let fromField):
                     ChoosingCityView(coordinator: coordinator, station: station, fromField: fromField)
-                case .stationSelection(let city, let fromField):
-                    StationSelectionView(coordinator: coordinator, city: city, fromField: fromField)
+                case .stationSelection(let searchText, let city, let fromField):
+                    StationSelectionView(viewModel: StationSelectionViewModel(searchText: searchText, city: city, fromField: fromField), coordinator: coordinator)
                 case .ticketFiltering:
                     TicketFilteringView(coordinator: coordinator)
                 case .routeParameter:
                     RouteParameterClarificationsView(coordinator: coordinator)
                 case .flightSelection(let ticket):
-                    FlightSelectionView(coordinator: coordinator, ticket: ticket)
+                    FlightSelectionView(coordinator: coordinator, viewModel: FlightSelectionViewModel(ticket: ticket))
                 }
             }
         }

@@ -83,6 +83,7 @@ private struct CityScrollView: View {
                 if !filteredItems.isEmpty {
                     ListCities(
                         coordinator: coordinator,
+                        searchText: searchText,
                         filteredItems: filteredItems,
                         station: station,
                         fromField: fromField
@@ -108,6 +109,7 @@ private struct ListCities: View {
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
     
+    let searchText: String
     let filteredItems: [String]
     let station: String
     let fromField: Bool
@@ -125,7 +127,7 @@ private struct ListCities: View {
                     coordinator.selectedCityTo = item
                     coordinator.selectedStationTo = station
                 }
-                coordinator.path.append(RouteEnum.stationSelection(city: item, fromField: fromField))
+                coordinator.path.append(RouteEnum.stationSelection(searchText: searchText, city: item, fromField: fromField))
             }) {
                 HStack {
                     Text("\(item)")

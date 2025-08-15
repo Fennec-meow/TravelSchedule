@@ -97,6 +97,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				StationSelectionView.swift,
+				StationSelectionViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -104,6 +105,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				FlightSelectionView.swift,
+				FlightSelectionViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -135,6 +137,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SettingsView.swift,
+				SettingsViewModel.swift,
 				UserAgreementView.swift,
 				WebView.swift,
 			);
