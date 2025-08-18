@@ -126,7 +126,8 @@ private struct NavigationLinkWhereFrom: View {
     // MARK: body
     
     var body: some View {
-        NavigationLink(value: RouteEnum.choosingCity(station: "", fromField: true)) {
+        /// TODO
+        NavigationLink(value: RouteEnum.choosingCity(searchText: "", station: "", fromField: true)) {
             Text(containsFromAndTo ? (
                 coordinator.selectedCityFrom.isEmpty ? "Откуда" :
                     "\(coordinator.selectedCityFrom) (\(coordinator.selectedStationFrom))") :
@@ -160,7 +161,8 @@ private struct NavigationLinkWhere: View {
     // MARK: body
     
     var body: some View {
-        NavigationLink(value: RouteEnum.choosingCity(station: "", fromField: false)) {
+        /// TODO
+        NavigationLink(value: RouteEnum.choosingCity(searchText: "", station: "", fromField: false)) {
             Text(containsFromAndTo ? (
                 coordinator.selectedCityTo.isEmpty ? "Куда" :
                     "\(coordinator.selectedCityTo) (\(coordinator.selectedStationTo))") :

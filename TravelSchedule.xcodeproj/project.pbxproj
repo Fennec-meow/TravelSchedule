@@ -62,6 +62,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ChoosingCityView.swift,
+				ChoosingCityViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};

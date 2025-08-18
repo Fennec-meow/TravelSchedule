@@ -28,16 +28,39 @@ struct MainView: View {
             .tint(.blackForTheme)
             .navigationDestination(for: RouteEnum.self) { route in
                 switch route {
-                case .choosingCity(let station, let fromField):
-                    ChoosingCityView(coordinator: coordinator, station: station, fromField: fromField)
+                    /// TODO
+                case .choosingCity(let searchText, let station, let fromField):
+                    ChoosingCityView(
+                        viewModel: ChoosingCityViewModel(
+                            searchText: searchText,
+                            station: station,
+                            fromField: fromField,
+                        ),
+                        coordinator: coordinator
+                    )
                 case .stationSelection(let searchText, let city, let fromField):
-                    StationSelectionView(viewModel: StationSelectionViewModel(searchText: searchText, city: city, fromField: fromField), coordinator: coordinator)
+                    StationSelectionView(
+                        viewModel: StationSelectionViewModel(
+                            searchText: searchText,
+                            city: city,
+                            fromField: fromField
+                        ),
+                        coordinator: coordinator
+                    )
                 case .ticketFiltering:
-                    TicketFilteringView(coordinator: coordinator)
+                    TicketFilteringView(
+                        coordinator: coordinator
+                    )
                 case .routeParameter:
-                    RouteParameterClarificationsView(coordinator: coordinator)
+                    RouteParameterClarificationsView(
+                        coordinator: coordinator
+                    )
                 case .flightSelection(let ticket):
-                    FlightSelectionView(coordinator: coordinator, viewModel: FlightSelectionViewModel(ticket: ticket))
+                    FlightSelectionView(
+                        coordinator: coordinator,
+                        viewModel: FlightSelectionViewModel(
+                            ticket: ticket
+                        ))
                 }
             }
         }
