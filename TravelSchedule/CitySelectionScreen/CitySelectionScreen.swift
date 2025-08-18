@@ -20,9 +20,15 @@ struct CitySelectionScreen: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 44) {
-                ShowStoriesScrollView(viewedStories: viewedStories)
+                ShowStoriesScrollView(
+                    viewModel: viewModel,
+                    viewedStories: viewedStories
+                )
                 
-                ChoosingDirection(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
+                ChoosingDirection(
+                    coordinator: coordinator,
+                    containsFromAndTo: $containsFromAndTo
+                )
             }
             .padding(.top, 24)
         }
@@ -35,7 +41,7 @@ private struct ShowStoriesScrollView: View {
     
     // MARK: Public Property
     
-    @StateObject private var viewModel = StoriesViewModel() ///
+    @StateObject var viewModel: StoriesViewModel
     @State  var viewedStories: Bool
     
     
@@ -73,8 +79,14 @@ private struct ChoosingDirection: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
-                        NavigationLinkWhereFrom(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
-                        NavigationLinkWhere(coordinator: coordinator, containsFromAndTo: $containsFromAndTo)
+                        NavigationLinkWhereFrom(
+                            coordinator: coordinator,
+                            containsFromAndTo: $containsFromAndTo
+                        )
+                        NavigationLinkWhere(
+                            coordinator: coordinator,
+                            containsFromAndTo: $containsFromAndTo
+                        )
                     }
                     .frame(width: 259, height: 96)
                     .background(RoundedRectangle(cornerRadius: 20)
