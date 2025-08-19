@@ -6,7 +6,7 @@ struct StationSelectionView: View {
 
     // MARK: Public Property
     
-    @StateObject var viewModel: StationSelectionViewModel
+    @ObservedObject var viewModel: StationSelectionViewModel
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
        
@@ -18,12 +18,11 @@ struct StationSelectionView: View {
             SearchTextField(text: $viewModel.searchText)
             StationScrollView(
                 coordinator: coordinator,
-                viewModel: viewModel,
-                filteredItems: viewModel.filteredItems,
-                cities: viewModel.cities,
-                city: viewModel.city,
-                fromField: viewModel.fromField
+                viewModel: viewModel
             )
+        }
+        .task {
+            // viewModel.loadData()
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
@@ -46,28 +45,14 @@ private struct StationScrollView: View {
     // MARK: Public Property
     
     @ObservedObject private var coordinator: NavCoordinator
-    @State var viewModel: StationSelectionViewModel
-
-    private let filteredItems: [String]
-    private var cities: [String]
-    
-    private let city: String
-    private let fromField: Bool
+    @ObservedObject var viewModel: StationSelectionViewModel
     
     init(
         coordinator: NavCoordinator,
-        viewModel: StationSelectionViewModel,
-        filteredItems: [String],
-        cities: [String],
-        city: String,
-        fromField: Bool
+        viewModel: StationSelectionViewModel
     ) {
         self.coordinator = coordinator
         self.viewModel = viewModel
-        self.filteredItems = filteredItems
-        self.cities = cities
-        self.city = city
-        self.fromField = fromField
     }
     
     // MARK: body
@@ -79,9 +64,7 @@ private struct StationScrollView: View {
                 if !viewModel.filteredItems.isEmpty {
                     ListStations(
                         coordinator: coordinator,
-                        filteredItems: filteredItems,
-                        city: city,
-                        fromField: fromField
+                        viewModel: viewModel
                     )
                 } else {
                     VStack {
@@ -102,34 +85,27 @@ private struct ListStations: View {
     // MARK: Public Property
     
     @ObservedObject private var coordinator: NavCoordinator
+    @ObservedObject var viewModel: StationSelectionViewModel
     @Environment(\.dismiss) var dismiss
-    
-    private let filteredItems: [String]
-    private let city: String
-    private let fromField: Bool
     
     init(
         coordinator: NavCoordinator,
-        filteredItems: [String],
-        city: String,
-        fromField: Bool
+        viewModel: StationSelectionViewModel
     ) {
         self.coordinator = coordinator
-        self.filteredItems = filteredItems
-        self.city = city
-        self.fromField = fromField
+        self.viewModel = viewModel
     }
     
     // MARK: body
     
     var body: some View {
-        ForEach(filteredItems, id: \.self) { item in
+        ForEach(viewModel.filteredItems, id: \.self) { item in
             Button(action: {
-                if fromField {
-                    coordinator.selectedCityFrom = city
+                if viewModel.direction == .from {
+                    coordinator.selectedCityFrom = viewModel.city
                     coordinator.selectedStationFrom = item
                 } else {
-                    coordinator.selectedCityTo = city
+                    coordinator.selectedCityTo = viewModel.city
                     coordinator.selectedStationTo = item
                 }
                 coordinator.path = NavigationPath()

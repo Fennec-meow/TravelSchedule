@@ -6,7 +6,7 @@ struct ChoosingCityView: View {
     
     // MARK: Public Property
     
-    @StateObject var viewModel: ChoosingCityViewModel
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
   
@@ -18,13 +18,11 @@ struct ChoosingCityView: View {
             SearchTextField(text: $viewModel.searchText)
             CityScrollView(
                 coordinator: coordinator,
-                viewModel: viewModel,
-                searchText: viewModel.searchText,
-                filteredItems: viewModel.filteredItems,
-                cities: viewModel.cities,
-                station: viewModel.station,
-                fromField: viewModel.fromField
+                viewModel: viewModel
             )
+        }
+        .task {
+            
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
@@ -48,32 +46,14 @@ private struct CityScrollView: View {
     
     /// TODO
     @ObservedObject var coordinator: NavCoordinator
-    @State var viewModel: ChoosingCityViewModel
-
-    @State var searchText = ""
-    
-    private let filteredItems: [String]
-    private var cities: [String]
-    
-    private let station: String
-    private let fromField: Bool
+    @ObservedObject var viewModel: ChoosingCityViewModel
     
     init(
         coordinator: NavCoordinator,
-        viewModel: ChoosingCityViewModel,
-        searchText: String,
-        filteredItems: [String],
-        cities: [String],
-        station: String,
-        fromField: Bool
+        viewModel: ChoosingCityViewModel
     ) {
         self.coordinator = coordinator
         self.viewModel = viewModel
-        self.searchText = searchText
-        self.filteredItems = filteredItems
-        self.cities = cities
-        self.station = station
-        self.fromField = fromField
     }
     
     // MARK: body
@@ -85,10 +65,7 @@ private struct CityScrollView: View {
                 if !viewModel.filteredItems.isEmpty {
                     ListCities(
                         coordinator: coordinator,
-                        searchText: searchText,
-                        filteredItems: filteredItems,
-                        station: station,
-                        fromField: fromField
+                        viewModel: viewModel
                     )
                 } else {
                     VStack {
@@ -109,40 +86,38 @@ private struct ListCities: View {
     // MARK: Public Property
     /// TODO
     @ObservedObject private var coordinator: NavCoordinator
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @Environment(\.dismiss) var dismiss
-    
-    private let searchText: String
-    private let filteredItems: [String]
-    private let station: String
-    private let fromField: Bool
     
     init(
         coordinator: NavCoordinator,
-        searchText: String,
-        filteredItems: [String],
-        station: String,
-        fromField: Bool
+        viewModel: ChoosingCityViewModel
     ) {
         self.coordinator = coordinator
-        self.searchText = searchText
-        self.filteredItems = filteredItems
-        self.station = station
-        self.fromField = fromField
+        self.viewModel = viewModel
     }
     
     // MARK: body
     
     var body: some View {
-        ForEach(filteredItems, id: \.self) { item in
+        ForEach(viewModel.filteredItems, id: \.self) { item in
             Button(action: {
-                if fromField {
+                if viewModel.direction == .from {
                     coordinator.selectedCityFrom = item
-                    coordinator.selectedStationFrom = station
+                    coordinator.selectedStationFrom = viewModel.station
                 } else {
                     coordinator.selectedCityTo = item
-                    coordinator.selectedStationTo = station
+                    coordinator.selectedStationTo = viewModel.station
                 }
-                coordinator.path.append(RouteEnum.stationSelection(searchText: searchText, city: item, fromField: fromField))
+                coordinator.path.append(
+                    Route.stationSelection(
+                        searchText: viewModel.searchText,
+                        city: item,
+                        direction: viewModel.direction,
+                        stations: StationSelectionViewModel.availableStations
+                    )
+                )
+                // TODO: CRITICAL!!! переписать под поле со станциями!
             }) {
                 HStack {
                     Text("\(item)")

@@ -7,14 +7,33 @@ struct MainView: View {
     // MARK: Public Property
     
     @StateObject var coordinator = NavCoordinator()
-    @State  var viewedStories: Bool
+    @State var viewedStories: Bool // TODO: заинитить storiesViewModel и брать значение оттуда
+    
+    @ObservedObject private var choosingCityViewModel: ChoosingCityViewModel
+    @ObservedObject private var stationSelectionViewModel: StationSelectionViewModel
+    
+    init(
+        viewedStories: Bool,
+        choosingCityViewModel: ChoosingCityViewModel,
+        stationSelectionViewModel: StationSelectionViewModel
+    ) {
+        self.viewedStories = viewedStories
+        self.choosingCityViewModel = choosingCityViewModel
+        self.stationSelectionViewModel = stationSelectionViewModel
+    }
     
     // MARK: body
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
             TabView {
-                CitySelectionScreen(coordinator: coordinator, viewedStories: viewedStories)
+                CitySelectionScreen(
+                    coordinator: coordinator,
+                    choosingCityViewModel: choosingCityViewModel
+                )
+                    .task {
+                        
+                    }
                     .tabItem {
                         Image(.schedule)
                             .renderingMode(.template)
@@ -26,27 +45,31 @@ struct MainView: View {
                     }
             }
             .tint(.blackForTheme)
-            .navigationDestination(for: RouteEnum.self) { route in
+            .navigationDestination(for: Route.self) { route in
                 switch route {
                     /// TODO
-                case .choosingCity(let searchText, let station, let fromField):
+                case .choosingCity(let searchText, let station, let direction, let cities):
                     ChoosingCityView(
-                        viewModel: ChoosingCityViewModel(
-                            searchText: searchText,
-                            station: station,
-                            fromField: fromField,
-                        ),
+                        viewModel: choosingCityViewModel,
                         coordinator: coordinator
                     )
-                case .stationSelection(let searchText, let city, let fromField):
+                    .onAppear {
+                        choosingCityViewModel.searchText = searchText
+                        choosingCityViewModel.station = station
+                        choosingCityViewModel.direction = direction
+                        choosingCityViewModel.cities = cities
+                    }
+                case .stationSelection(let searchText, let city, let direction, let stations):
                     StationSelectionView(
-                        viewModel: StationSelectionViewModel(
-                            searchText: searchText,
-                            city: city,
-                            fromField: fromField
-                        ),
+                        viewModel: stationSelectionViewModel,
                         coordinator: coordinator
                     )
+                    .onAppear {
+                        stationSelectionViewModel.searchText = searchText
+                        stationSelectionViewModel.city = city
+                        stationSelectionViewModel.direction = direction
+                        stationSelectionViewModel.stations = stations
+                    }
                 case .ticketFiltering:
                     TicketFilteringView(
                         coordinator: coordinator
@@ -56,6 +79,7 @@ struct MainView: View {
                         coordinator: coordinator
                     )
                 case .flightSelection(let ticket):
+                    // TODO: по аналогии с другими viewModel выше (stationSelectionViewModel и choosingCityViewModel)
                     FlightSelectionView(
                         coordinator: coordinator,
                         viewModel: FlightSelectionViewModel(
@@ -74,5 +98,9 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView(viewedStories: false)
+    MainView(
+        viewedStories: false,
+        choosingCityViewModel: ChoosingCityViewModel(),
+        stationSelectionViewModel: StationSelectionViewModel()
+    )
 }

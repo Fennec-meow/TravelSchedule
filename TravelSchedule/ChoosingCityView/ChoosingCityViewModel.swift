@@ -1,13 +1,22 @@
 import SwiftUI
 /// TODO
-@MainActor
+//@MainActor
 final class ChoosingCityViewModel: ObservableObject {
+    
     @Published var searchText: String = ""
     
-    @Published var station: String
-    @Published var fromField: Bool
+    @Published var station: String = ""
+    @Published var direction: GoingDirection = .from
     
-    @Published var cities: [String] = []
+    @Published var cities: [String] = [
+        "Москва",
+        "Санкт-Петербург",
+        "Сочи",
+        "Горный воздух",
+        "Краснодар",
+        "Казань",
+        "Омск"
+    ]
     
     var filteredItems: [String] {
         guard !searchText.isEmpty else { return cities }
@@ -16,22 +25,16 @@ final class ChoosingCityViewModel: ObservableObject {
         }
     }
     
-    init(
+    convenience init(
         searchText: String,
         station: String,
-        fromField: Bool,
-        cities: [String] = [
-            "Москва",
-            "Санкт-Петербург",
-            "Сочи",
-            "Горный воздух",
-            "Краснодар",
-            "Казань",
-            "Омск"
-        ]) {
-            self.searchText = searchText
-            self.station = station
-            self.fromField = fromField
-            self.cities = cities
-        }
+        direction: GoingDirection,
+        cities: [String]
+    ) {
+        self.init()
+        self.searchText = searchText
+        self.station = station
+        self.direction = direction
+        self.cities = cities
+    }
 }

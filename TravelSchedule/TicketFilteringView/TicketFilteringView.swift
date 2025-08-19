@@ -144,7 +144,7 @@ private struct TicketsScrollView: View {
                 } else {
                     ForEach(tickets) { ticket in
                         ShowListFlights(action: {
-                            coordinator.path.append(RouteEnum.flightSelection(ticket))
+                            coordinator.path.append(Route.flightSelection(ticket))
                         }, ticket: ticket)
                     }
                 }
@@ -201,7 +201,7 @@ private struct SpecifyTimeButton: View {
     
     var body: some View {
         Button(action: {
-            coordinator.path.append(RouteEnum.routeParameter)
+            coordinator.path.append(Route.routeParameter)
         }) {
             HStack(spacing: 4) {
                 Text("Уточнить время")

@@ -2,34 +2,50 @@ import SwiftUI
 /// TODO
 @MainActor
 final class StationSelectionViewModel: ObservableObject {
-    @Published var searchText: String = ""
     
+    @Published var searchText: String = ""
     @Published var city: String = ""
-    @Published var fromField: Bool
-    @Published var cities: [String] = []
+    @Published var direction: GoingDirection = .where
+    @Published var stations: [String] = [
+        "Киевский вокзал",
+        "Курский вокзал",
+        "Ярославский вокзал",
+        "Белорусский вокзал",
+        "Савеловский вокзал",
+        "Ленинградский вокзал"
+    ]
+    
+//    private var nearestStationsService: NearestStationsServiceProtocol = NearestStationsService()
     
     var filteredItems: [String] {
-        guard !searchText.isEmpty else { return cities }
-        return cities.filter {
+        guard !searchText.isEmpty else { return stations }
+        return stations.filter {
             $0.localizedCaseInsensitiveContains(searchText)
         }
     }
     
-    init(
+    convenience init(
         searchText: String,
         city: String,
-        fromField: Bool,
-        cities: [String] = [
-            "Киевский вокзал",
-            "Курский вокзал",
-            "Ярославский вокзал",
-            "Белорусский вокзал",
-            "Савеловский вокзал",
-            "Ленинградский вокзал"
-        ]) {
-            self.searchText = searchText
-            self.city = city
-            self.fromField = fromField
-            self.cities = cities
-        }
+        direction: GoingDirection,
+        stations: [String]
+    ) {
+        self.init()
+        self.searchText = searchText
+        self.city = city
+        self.direction = direction
+        self.stations = stations
+    }
+}
+
+extension StationSelectionViewModel {
+    
+    static let availableStations: [String] = [
+        "Киевский вокзал",
+        "Курский вокзал",
+        "Ярославский вокзал",
+        "Белорусский вокзал",
+        "Савеловский вокзал",
+        "Ленинградский вокзал"
+    ]
 }

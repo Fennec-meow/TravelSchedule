@@ -27,7 +27,7 @@ func testFetchStations() {
     Task {
         do {
             let client = Client(
-                serverURL: try Servers.server1(),
+                serverURL: try Servers.Server1.url(),
                 transport: URLSessionTransport()
             )
             

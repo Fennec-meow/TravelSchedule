@@ -6,29 +6,31 @@ struct CitySelectionScreen: View {
     
     // MARK: Private Property
     
-    @StateObject private var viewModel = StoriesViewModel()
+    @ObservedObject private var storiesViewModel = StoriesViewModel()
+    @ObservedObject var choosingCityViewModel: ChoosingCityViewModel
     
     // MARK: Public Property
     
     @ObservedObject var coordinator: NavCoordinator
     @State private var containsFromAndTo = true
-    @State  var viewedStories: Bool
+    @State var viewedStories: Bool = false
     
+    init(
+        coordinator: NavCoordinator,
+        choosingCityViewModel: ChoosingCityViewModel
+    ) {
+        self.coordinator = coordinator
+        self.choosingCityViewModel = choosingCityViewModel
+    }
     
     // MARK: body
     
     var body: some View {
         NavigationView {
             VStack(spacing: 44) {
-                ShowStoriesScrollView(
-                    viewModel: viewModel,
-                    viewedStories: viewedStories
-                )
+                ShowStoriesScrollView(storiesViewModel: storiesViewModel, viewedStories: viewedStories)
                 
-                ChoosingDirection(
-                    coordinator: coordinator,
-                    containsFromAndTo: $containsFromAndTo
-                )
+                ChoosingDirection(coordinator: coordinator ,viewModel: choosingCityViewModel, containsFromAndTo: $containsFromAndTo)
             }
             .padding(.top, 24)
         }
@@ -41,16 +43,19 @@ private struct ShowStoriesScrollView: View {
     
     // MARK: Public Property
     
-    @StateObject var viewModel: StoriesViewModel
-    @State  var viewedStories: Bool
+    @ObservedObject private var storiesViewModel: StoriesViewModel ///
+    @State var viewedStories: Bool
     
-    
+    init(storiesViewModel: StoriesViewModel, viewedStories: Bool) {
+        self.storiesViewModel = storiesViewModel
+        self.viewedStories = viewedStories
+    }
     // MARK: body
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(alignment: .center, spacing: 12) {
-                ForEach(viewModel.storiesGroups.compactMap { $0.isEmpty ? nil : $0 }, id: \.self) { storiesGroup in
+                ForEach(storiesViewModel.storiesGroups.compactMap { $0.isEmpty ? nil : $0 }, id: \.self) { storiesGroup in
                     StoriesCell(stories: storiesGroup, isViewed: $viewedStories)
                 }
             }
@@ -68,6 +73,7 @@ private struct ChoosingDirection: View {
     // MARK: Public Property
     
     @ObservedObject var coordinator: NavCoordinator
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @Binding var containsFromAndTo: Bool
     
     // MARK: body
@@ -79,14 +85,8 @@ private struct ChoosingDirection: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: 0) {
-                        NavigationLinkWhereFrom(
-                            coordinator: coordinator,
-                            containsFromAndTo: $containsFromAndTo
-                        )
-                        NavigationLinkWhere(
-                            coordinator: coordinator,
-                            containsFromAndTo: $containsFromAndTo
-                        )
+                        NavigationLinkWhereFrom(coordinator: coordinator,viewModel: viewModel, containsFromAndTo: $containsFromAndTo)
+                        NavigationLinkWhere(coordinator: coordinator, viewModel: viewModel, containsFromAndTo: $containsFromAndTo)
                     }
                     .frame(width: 259, height: 96)
                     .background(RoundedRectangle(cornerRadius: 20)
@@ -133,13 +133,19 @@ private struct NavigationLinkWhereFrom: View {
     // MARK: Public Property
     
     @ObservedObject var coordinator: NavCoordinator
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @Binding var containsFromAndTo: Bool
     
     // MARK: body
     
     var body: some View {
         /// TODO
-        NavigationLink(value: RouteEnum.choosingCity(searchText: "", station: "", fromField: true)) {
+        NavigationLink(value: Route.choosingCity(
+            searchText: viewModel.searchText,
+            station: viewModel.station,
+            direction: viewModel.direction,
+            cities: viewModel.cities
+        )) {
             Text(containsFromAndTo ? (
                 coordinator.selectedCityFrom.isEmpty ? "Откуда" :
                     "\(coordinator.selectedCityFrom) (\(coordinator.selectedStationFrom))") :
@@ -168,13 +174,19 @@ private struct NavigationLinkWhere: View {
     // MARK: Public Property
     
     @ObservedObject var coordinator: NavCoordinator
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @Binding var containsFromAndTo: Bool
     
     // MARK: body
     
     var body: some View {
         /// TODO
-        NavigationLink(value: RouteEnum.choosingCity(searchText: "", station: "", fromField: false)) {
+        NavigationLink(value: Route.choosingCity(
+            searchText: viewModel.searchText,
+            station: viewModel.station,
+            direction: .where,
+            cities: viewModel.cities
+        )) {
             Text(containsFromAndTo ? (
                 coordinator.selectedCityTo.isEmpty ? "Куда" :
                     "\(coordinator.selectedCityTo) (\(coordinator.selectedStationTo))") :
@@ -245,7 +257,7 @@ private struct TheFindButton: View {
     var body: some View {
         if !coordinator.selectedCityTo.isEmpty && !coordinator.selectedCityFrom.isEmpty {
             Button(action: {
-                coordinator.path.append(RouteEnum.ticketFiltering)
+                coordinator.path.append(Route.ticketFiltering)
             }) {
                 Text("Найти")
                     .font(.bold17)
@@ -259,9 +271,8 @@ private struct TheFindButton: View {
     }
 }
 
-#Preview {
-    MainView(
-        coordinator: NavCoordinator(),
-        viewedStories: false
-    )
-}
+//#Preview {
+//    MainView(
+//        viewedStories: false
+//    )
+//}
