@@ -9,14 +9,14 @@ struct TestFetch: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             .onAppear {
                 // Вызовы тестовых функций
-                testFetchStations()
-                //            testFetchSegments()
-                //            testFetchScheduleResponse()
-                //            testFetchThreadStationsResponse()
-                //            testFetchNearestCityResponse()
-                //            testFetchCarrierResponse()
-                //            testFetchAllStationsResponse()
-                //            testFetchCopyright()
+//                testFetchStations()
+//                testFetchSegments()
+                testFetchScheduleResponse()
+//                testFetchThreadStationsResponse()
+//                testFetchNearestCityResponse()
+//                testFetchCarrierResponse()
+//                testFetchAllStationsResponse()
+//                testFetchCopyright()
             }
     }
 }
@@ -145,8 +145,8 @@ func testFetchNearestCityResponse() {
             )
             print("Fetching service...")
             let nearestCityResponse = try await service.getNearestCity(
-                lat: 59.86580221563463,
-                lng: 30.320322626983558
+                lat: 45.023877,
+                lng: 38.970157
             )
             
             print("Successfully fetched nearestCityResponse: \(nearestCityResponse)")

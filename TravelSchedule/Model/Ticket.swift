@@ -4,6 +4,7 @@ import SwiftUI
 
 struct Ticket: Identifiable, Hashable, Sendable {
     let id = UUID()
+    let code: Int
     let operatorLogo: String
     let carrierName: String
     let opf: String

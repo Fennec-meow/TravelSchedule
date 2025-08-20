@@ -141,6 +141,7 @@ private struct TicketDepartureAndArrivalTime: View {
 
 #Preview {
     TicketCell(ticket: .init(
+        code: 0,
         operatorLogo: "RJD",
         carrierName: "РЖД",
         opf: "ООО «РЖД»",

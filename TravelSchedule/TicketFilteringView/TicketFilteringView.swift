@@ -30,6 +30,7 @@ struct TicketFilteringView: View {
     
     let tickets: [Ticket] = [
         .init(
+            code: 0,
             operatorLogo: "RJD",
             carrierName: "РЖД",
             opf: "ОАО «РЖД»",
@@ -43,6 +44,7 @@ struct TicketFilteringView: View {
             phone: "+7 (800) 201-43-56"
         ),
         .init(
+            code: 0,
             operatorLogo: "FGC",
             carrierName: "ФГК",
             opf: "АО «ФГК»",
@@ -56,6 +58,7 @@ struct TicketFilteringView: View {
             phone: "+7 (800) 250-47-77"
         ),
         .init(
+            code: 0,
             operatorLogo: "uralLogistics",
             carrierName: "Урал логистика",
             opf: "ООО «Урал логистика»",
@@ -69,6 +72,7 @@ struct TicketFilteringView: View {
             phone: "+7 (495) 783-83-83"
         ),
         .init(
+            code: 0,
             operatorLogo: "RJD",
             carrierName: "РЖД",
             opf: "ОАО «РЖД»",

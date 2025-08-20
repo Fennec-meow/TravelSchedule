@@ -6,20 +6,26 @@ struct MainView: View {
     
     // MARK: Public Property
     
+    @EnvironmentObject var services: APIServicesContainer
+//    private let ticket: Ticket
+
     @StateObject var coordinator = NavCoordinator()
     @State var viewedStories: Bool // TODO: заинитить storiesViewModel и брать значение оттуда
     
     @ObservedObject private var choosingCityViewModel: ChoosingCityViewModel
     @ObservedObject private var stationSelectionViewModel: StationSelectionViewModel
+//    @ObservedObject private var flightSelectionViewModel: FlightSelectionViewModel
     
     init(
         viewedStories: Bool,
         choosingCityViewModel: ChoosingCityViewModel,
         stationSelectionViewModel: StationSelectionViewModel
+//        flightSelectionViewModel: FlightSelectionViewModel
     ) {
         self.viewedStories = viewedStories
         self.choosingCityViewModel = choosingCityViewModel
         self.stationSelectionViewModel = stationSelectionViewModel
+//        self.flightSelectionViewModel = flightSelectionViewModel
     }
     
     // MARK: body
@@ -82,9 +88,8 @@ struct MainView: View {
                     // TODO: по аналогии с другими viewModel выше (stationSelectionViewModel и choosingCityViewModel)
                     FlightSelectionView(
                         coordinator: coordinator,
-                        viewModel: FlightSelectionViewModel(
-                            ticket: ticket
-                        ))
+                        viewModel: .init(carrierInfoService: services.carrierInfoService)
+                    )
                 }
             }
         }
@@ -96,11 +101,11 @@ struct MainView: View {
         }
     }
 }
-
-#Preview {
-    MainView(
-        viewedStories: false,
-        choosingCityViewModel: ChoosingCityViewModel(),
-        stationSelectionViewModel: StationSelectionViewModel()
-    )
-}
+//
+//#Preview {
+//    MainView(
+//        viewedStories: false,
+//        choosingCityViewModel: ChoosingCityViewModel(),
+//        stationSelectionViewModel: StationSelectionViewModel()
+//    )
+//}

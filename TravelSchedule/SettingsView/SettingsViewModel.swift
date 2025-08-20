@@ -12,6 +12,9 @@ final class SettingsViewModel {
     
     static let shared = SettingsViewModel()
     
+    //    private var copyrightService: CopyrightServiceProtocol
+
+    
     private var changingTheTheme: Bool = false
     var isDarkMode: Bool {
         didSet {

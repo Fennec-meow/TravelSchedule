@@ -22,7 +22,7 @@ struct ChoosingCityView: View {
             )
         }
         .task {
-            
+            await viewModel.getCities()
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()

@@ -15,7 +15,7 @@ final class StationSelectionViewModel: ObservableObject {
         "Ленинградский вокзал"
     ]
     
-//    private var nearestStationsService: NearestStationsServiceProtocol = NearestStationsService()
+//    private var stationScheduleService: StationScheduleServiceProtocol
     
     var filteredItems: [String] {
         guard !searchText.isEmpty else { return stations }
@@ -29,12 +29,14 @@ final class StationSelectionViewModel: ObservableObject {
         city: String,
         direction: GoingDirection,
         stations: [String]
+//        stationScheduleService: StationScheduleServiceProtocol
     ) {
         self.init()
         self.searchText = searchText
         self.city = city
         self.direction = direction
         self.stations = stations
+//        self.stationScheduleService = stationScheduleService
     }
 }
 

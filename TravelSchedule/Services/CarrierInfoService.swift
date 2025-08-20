@@ -13,7 +13,7 @@ protocol CarrierInfoServiceProtocol {
 
 // MARK: - CarrierInfoService
 
-final class CarrierInfoService: CarrierInfoServiceProtocol {
+actor CarrierInfoService {
     
     // MARK: Private Property
     
@@ -30,7 +30,7 @@ final class CarrierInfoService: CarrierInfoServiceProtocol {
 
 // MARK: - Public Methods
 
-extension CarrierInfoService {
+extension CarrierInfoService: CarrierInfoServiceProtocol {
     func getCarrierInfo(
         code: String
     ) async throws -> CarrierInfo {

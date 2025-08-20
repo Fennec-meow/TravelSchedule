@@ -13,7 +13,7 @@ protocol SchedualBetweenStationsServiceProtocol {
 
 // MARK: - SchedualBetweenStationsService
 
-final class SchedualBetweenStationsService: SchedualBetweenStationsServiceProtocol {
+actor SchedualBetweenStationsService: SchedualBetweenStationsServiceProtocol {
     
     // MARK: Private Property
     
@@ -40,7 +40,7 @@ extension SchedualBetweenStationsService {
             apikey: apikey,
             from: from,
             to: to,
-            date: "2025-07-02"
+            date: "2025-08-19"
         ))
         return try response.ok.body.json
     }
