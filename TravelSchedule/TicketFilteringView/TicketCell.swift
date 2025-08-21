@@ -1,10 +1,3 @@
-//
-//  TicketCell.swift
-//  TravelSchedule
-//
-//  Created by Kira on 24.07.2025.
-//
-
 import SwiftUI
 
 // MARK: - TicketCell
@@ -20,14 +13,14 @@ struct TicketCell: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top) {
-                TicketOperatorLogo(ticket: ticket)
+                TicketOperatorLogo(ticketOperatorLogo: ticket.operatorLogo)
                 VStack(alignment: .leading, spacing: 2) {
-                    TicketCarrierName(ticket: ticket)
-                    TicketTransfer(ticket: ticket)
+                    TicketCarrierName(ticketCarrierName: ticket.carrierName)
+                    TicketTransfer(ticketTransfer: ticket.transfer)
                 }
                 Spacer()
                 
-                TicketDate(ticket: ticket)
+                TicketDate(ticketDate: ticket.date)
             }
             .padding(.bottom, 5)
             TicketDepartureAndArrivalTime(ticket: ticket)
@@ -44,14 +37,35 @@ private struct TicketOperatorLogo: View {
     
     // MARK: Public Property
     
-    var ticket: Ticket
+    var ticketOperatorLogo: String
     
     // MARK: body
     
     var body: some View {
-        Image(ticket.operatorLogo)
+        if let logoURL = URL(string: ticketOperatorLogo) {
+            AsyncImage(url: logoURL) { image in
+                switch image {
+                case .empty:
+                    ProgressView()
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                case .failure:
+                    Image(systemName: "photo.on.rectangle")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 38, height: 38)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                @unknown default:
+                    EmptyView()
+                }
+            }
             .frame(width: 38, height: 38)
+            .background(.white)
             .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipped()
+        }
     }
 }
 
@@ -61,12 +75,12 @@ private struct TicketCarrierName: View {
     
     // MARK: Public Property
     
-    var ticket: Ticket
+    var ticketCarrierName: String
     
     // MARK: body
     
     var body: some View {
-        Text(ticket.carrierName)
+        Text(ticketCarrierName)
             .font(.regular17)
             .foregroundColor(.blackUni)
     }
@@ -78,12 +92,12 @@ private struct TicketTransfer: View {
     
     // MARK: Public Property
     
-    var ticket: Ticket
+    var ticketTransfer: String?
     
     // MARK: body
     
     var body: some View {
-        if let transfer = ticket.transfer {
+        if let transfer = ticketTransfer {
             Text(transfer)
                 .font(.regular12)
                 .foregroundColor(.redUni)
@@ -97,12 +111,12 @@ private struct TicketDate: View {
     
     // MARK: Public Property
     
-    var ticket: Ticket
+    var ticketDate: String
     
     // MARK: body
     
     var body: some View {
-        Text(ticket.date)
+        Text(ticketDate)
             .font(.regular12)
             .foregroundColor(.blackUni)
     }
@@ -144,14 +158,11 @@ private struct TicketDepartureAndArrivalTime: View {
         code: 0,
         operatorLogo: "RJD",
         carrierName: "РЖД",
-        opf: "ООО «РЖД»",
         withTransfer: true,
         transfer: "С пересадкой в Костроме",
         date: "14 января",
         departure: "22:30",
         duration: "20 часов",
         arrival: "08:15",
-        email: "ticket@rzd.ru",
-        phone: "+7 (800) 201-43-56"
     ))
 }

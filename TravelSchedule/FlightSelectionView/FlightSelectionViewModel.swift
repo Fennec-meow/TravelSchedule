@@ -1,40 +1,16 @@
-//
-//  FlightSelectionViewModel.swift
-//  TravelSchedule
-//
-//  Created by Kira on 14.08.2025.
-//
-
 import SwiftUI
 
 @MainActor
 final class FlightSelectionViewModel: ObservableObject {
     @Published var carrier: CarrierInfoModel?
-
+    
     private var carrierInfoService: CarrierInfoServiceProtocol
-
-//    private let ticket: Ticket
+    
+    @Published var ticket: Ticket? = nil
     
     init(carrierInfoService: CarrierInfoServiceProtocol) {
-//        self.ticket = ticket
         self.carrierInfoService = carrierInfoService
     }
-    
-//    var operatorLogo: String {
-//        ticket.operatorLogo
-//    }
-//    
-//    var opf: String {
-//        ticket.opf
-//    }
-//    
-//    var email: String {
-//        ticket.email
-//    }
-//    
-//    var phone: String {
-//        ticket.phone
-//    }
     
     func fetchCarrier(code: String) async {
         do {

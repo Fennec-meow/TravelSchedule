@@ -223,13 +223,13 @@ private struct CityChangeButton: View {
     var body: some View {
         Button(action: {
             let tempCity = coordinator.selectedCityFrom
-            let tempStation = coordinator.selectedStationFrom
+            let tempStation = coordinator.selectedStationFromCode
             
             coordinator.selectedCityFrom = coordinator.selectedCityTo
-            coordinator.selectedStationFrom = coordinator.selectedStationTo
+            coordinator.selectedStationFrom = coordinator.selectedStationToCode
             
             coordinator.selectedCityTo = tempCity
-            coordinator.selectedStationTo = tempStation
+            coordinator.selectedStationToCode = tempStation
             
             containsFromAndTo.toggle()
             action()
@@ -270,9 +270,3 @@ private struct TheFindButton: View {
         }
     }
 }
-
-//#Preview {
-//    MainView(
-//        viewedStories: false
-//    )
-//}

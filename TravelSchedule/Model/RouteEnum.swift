@@ -12,7 +12,7 @@ enum Route: Hashable {
         searchText: String,
         city: String,
         direction: GoingDirection,
-        stations: [String]
+        stations: [Components.Schemas.Station]
     )
     case ticketFiltering
     case routeParameter

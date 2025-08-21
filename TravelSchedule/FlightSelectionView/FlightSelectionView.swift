@@ -36,7 +36,7 @@ struct FlightSelectionView: View {
                         }
                     }
                 }
-                                
+                
                 VStack(alignment: .leading) {
                     Text("Телефон")
                         .font(.regular17)
@@ -53,6 +53,7 @@ struct FlightSelectionView: View {
         }
         .padding(.init(top: 0, leading: -16, bottom: 0, trailing: 16))
         .task {
+            // TODO: убрать mock-данные
             await viewModel.fetchCarrier(code: "680")
         }
         
@@ -74,40 +75,3 @@ struct FlightSelectionView: View {
         }
     }
 }
-
-//#Preview {
-//    FlightSelectionView(
-//        coordinator: NavCoordinator(),
-//        viewModel: FlightSelectionViewModel(ticket: Ticket(
-//            code: 0,
-//            operatorLogo: "RJD",
-//            carrierName: "РЖД",
-//            opf: "ООО «РЖД»",
-//            withTransfer: true,
-//            transfer: "С пересадкой в Костроме",
-//            date: "14 января",
-//            departure: "22:30",
-//            duration: "20 часов",
-//            arrival: "08:15",
-//            email: "ticket@rzd.ru",
-//            phone: "+7 (800) 201-43-56"
-//        ), carrierInfoService: as! CarrierInfoServiceProtocol)
-//    )
-//}
-//#Preview {
-//    FlightSelectionView(
-//        coordinator: NavCoordinator(),
-//        ticket: Ticket(
-//            operatorLogo: "RJD",
-//            carrierName: "РЖД",
-//            opf: "ООО «РЖД»",
-//            withTransfer: true,
-//            transfer: "С пересадкой в Костроме",
-//            date: "14 января",
-//            departure: "22:30",
-//            duration: "20 часов",
-//            arrival: "08:15",
-//            email: "ticket@rzd.ru",
-//            phone: "+7 (800) 201-43-56"
-//        ))
-//}

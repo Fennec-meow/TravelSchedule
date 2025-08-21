@@ -9,7 +9,7 @@ struct ChoosingCityView: View {
     @ObservedObject var viewModel: ChoosingCityViewModel
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-  
+    
     // MARK: body
     
     var body: some View {
@@ -62,15 +62,15 @@ private struct CityScrollView: View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
                 /// TODO
-                if !viewModel.filteredItems.isEmpty {
+                if viewModel.filteredCities.isEmpty {
+                    VStack {
+                        CityNotFound()
+                    }
+                } else {
                     ListCities(
                         coordinator: coordinator,
                         viewModel: viewModel
                     )
-                } else {
-                    VStack {
-                        CityNotFound()
-                    }
                 }
             }
         }
@@ -100,21 +100,26 @@ private struct ListCities: View {
     // MARK: body
     
     var body: some View {
-        ForEach(viewModel.filteredItems, id: \.self) { item in
+        ForEach(viewModel.filteredCities, id: \.self) { item in
             Button(action: {
+                let station = viewModel.settlements[viewModel.settlements.firstIndex(where: { $0.title == item }) ?? .zero].stations ?? []
                 if viewModel.direction == .from {
                     coordinator.selectedCityFrom = item
-                    coordinator.selectedStationFrom = viewModel.station
+                    //                    coordinator.selectedStationFrom     = station.first?.title ?? ""
+                    //                    coordinator.selectedStationFromCode = station.first?.codes?.yandex_code ?? ""
+                    
                 } else {
                     coordinator.selectedCityTo = item
-                    coordinator.selectedStationTo = viewModel.station
+                    //                    coordinator.selectedStationTo    = station.first?.title ?? ""
+                    //                    coordinator.selectedStationToCode = station.first?.codes?.yandex_code ?? ""
+                    
                 }
                 coordinator.path.append(
                     Route.stationSelection(
                         searchText: viewModel.searchText,
                         city: item,
                         direction: viewModel.direction,
-                        stations: StationSelectionViewModel.availableStations
+                        stations: station
                     )
                 )
                 // TODO: CRITICAL!!! переписать под поле со станциями!
@@ -186,13 +191,3 @@ private struct CitySelectionTitle: View {
             .foregroundColor(.blackForTheme)
     }
 }
-//
-//#Preview {
-//    NavigationView {
-//        ChoosingCityView(
-//            coordinator: NavCoordinator(),
-//            station: "Киевский вокзал",
-//            fromField: true
-//        )
-//    }
-//}

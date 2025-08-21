@@ -13,7 +13,7 @@ struct SearchTextField: View {
     var body: some View {
         HStack {
             Image("magnifier")
-                .foregroundStyle(.gray)
+                .foregroundStyle(.grayUni)
             
             TextField("Введите запрос", text: $text)
                 .autocapitalization(.none)
@@ -22,8 +22,8 @@ struct SearchTextField: View {
                 Button(action: {
                     self.text = ""
                 }) {
-                    Image(.chevronLeft)
-                        .foregroundStyle(.gray)
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(.grayUni)
                 }
             }
         }

@@ -8,7 +8,7 @@ typealias SchedualBetweenStations = Components.Schemas.Segments
 // MARK: - SchedualBetweenStationsServiceProtocol
 
 protocol SchedualBetweenStationsServiceProtocol {
-    func getSchedualBetweenStations(from: String, to: String) async throws -> SchedualBetweenStations
+    func getSchedualBetweenStations(from: String, to: String, date: String?) async throws -> SchedualBetweenStations
 }
 
 // MARK: - SchedualBetweenStationsService
@@ -33,15 +33,13 @@ actor SchedualBetweenStationsService: SchedualBetweenStationsServiceProtocol {
 extension SchedualBetweenStationsService {
     func getSchedualBetweenStations(
         from: String,
-        to: String
+        to: String,
+        date: String?
     ) async throws -> SchedualBetweenStations {
         
-        let response = try await client.getSchedualBetweenStations(query: .init(
-            apikey: apikey,
-            from: from,
-            to: to,
-            date: "2025-08-19"
-        ))
+        let response = try await client.getSchedualBetweenStations(
+            query: .init(apikey: apikey, from: from, to: to, date: date)
+        )
         return try response.ok.body.json
     }
 }

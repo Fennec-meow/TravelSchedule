@@ -9,14 +9,14 @@ struct TestFetch: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             .onAppear {
                 // Вызовы тестовых функций
-//                testFetchStations()
-//                testFetchSegments()
+                //                testFetchStations()
+                //                testFetchSegments()
                 testFetchScheduleResponse()
-//                testFetchThreadStationsResponse()
-//                testFetchNearestCityResponse()
-//                testFetchCarrierResponse()
-//                testFetchAllStationsResponse()
-//                testFetchCopyright()
+                //                testFetchThreadStationsResponse()
+                //                testFetchNearestCityResponse()
+                //                testFetchCarrierResponse()
+                //                testFetchAllStationsResponse()
+                //                testFetchCopyright()
             }
     }
 }
@@ -52,30 +52,30 @@ func testFetchStations() {
 
 // MARK: - SchedualBetweenStationsService
 
-func testFetchSegments() {
-    Task {
-        do {
-            let client = Client(
-                serverURL: try Servers.server1(),
-                transport: URLSessionTransport()
-            )
-            
-            let service = SchedualBetweenStationsService(
-                client: client,
-                apikey: Apikey.apiKey
-            )
-            print("Fetching service...")
-            let segments = try await service.getSchedualBetweenStations(
-                from: "c146",
-                to: "c213"
-            )
-            
-            print("Successfully fetched service: \(segments)")
-        } catch {
-            print("Error fetching service: \(error)")
-        }
-    }
-}
+//func testFetchSegments() {
+//    Task {
+//        do {
+//            let client = Client(
+//                serverURL: try Servers.server1(),
+//                transport: URLSessionTransport()
+//            )
+//            
+//            let service = SchedualBetweenStationsService(
+//                client: client,
+//                apikey: Apikey.apiKey
+//            )
+//            print("Fetching service...")
+//            let segments = try await service.getSchedualBetweenStations(
+//                from: "c146",
+//                to: "c213"
+//            )
+//            
+//            print("Successfully fetched service: \(segments)")
+//        } catch {
+//            print("Error fetching service: \(error)")
+//        }
+//    }
+//}
 
 // MARK: - StationScheduleService
 

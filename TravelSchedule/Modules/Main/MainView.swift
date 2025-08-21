@@ -7,25 +7,27 @@ struct MainView: View {
     // MARK: Public Property
     
     @EnvironmentObject var services: APIServicesContainer
-//    private let ticket: Ticket
-
+    
     @StateObject var coordinator = NavCoordinator()
     @State var viewedStories: Bool // TODO: заинитить storiesViewModel и брать значение оттуда
     
     @ObservedObject private var choosingCityViewModel: ChoosingCityViewModel
     @ObservedObject private var stationSelectionViewModel: StationSelectionViewModel
-//    @ObservedObject private var flightSelectionViewModel: FlightSelectionViewModel
+    @ObservedObject private var ticketFilteringViewModel: TicketFilteringViewModel
+    @ObservedObject private var flightSelectionViewModel: FlightSelectionViewModel
     
     init(
         viewedStories: Bool,
         choosingCityViewModel: ChoosingCityViewModel,
-        stationSelectionViewModel: StationSelectionViewModel
-//        flightSelectionViewModel: FlightSelectionViewModel
+        stationSelectionViewModel: StationSelectionViewModel,
+        ticketFilteringViewModel: TicketFilteringViewModel,
+        flightSelectionViewModel: FlightSelectionViewModel
     ) {
         self.viewedStories = viewedStories
         self.choosingCityViewModel = choosingCityViewModel
         self.stationSelectionViewModel = stationSelectionViewModel
-//        self.flightSelectionViewModel = flightSelectionViewModel
+        self.ticketFilteringViewModel = ticketFilteringViewModel
+        self.flightSelectionViewModel = flightSelectionViewModel
     }
     
     // MARK: body
@@ -37,13 +39,13 @@ struct MainView: View {
                     coordinator: coordinator,
                     choosingCityViewModel: choosingCityViewModel
                 )
-                    .task {
-                        
-                    }
-                    .tabItem {
-                        Image(.schedule)
-                            .renderingMode(.template)
-                    }
+                .task {
+                    
+                }
+                .tabItem {
+                    Image(.schedule)
+                        .renderingMode(.template)
+                }
                 SettingsView()
                     .tabItem {
                         Image(.settings)
@@ -63,7 +65,6 @@ struct MainView: View {
                         choosingCityViewModel.searchText = searchText
                         choosingCityViewModel.station = station
                         choosingCityViewModel.direction = direction
-                        choosingCityViewModel.cities = cities
                     }
                 case .stationSelection(let searchText, let city, let direction, let stations):
                     StationSelectionView(
@@ -78,6 +79,7 @@ struct MainView: View {
                     }
                 case .ticketFiltering:
                     TicketFilteringView(
+                        viewModel: ticketFilteringViewModel,
                         coordinator: coordinator
                     )
                 case .routeParameter:
@@ -85,11 +87,13 @@ struct MainView: View {
                         coordinator: coordinator
                     )
                 case .flightSelection(let ticket):
-                    // TODO: по аналогии с другими viewModel выше (stationSelectionViewModel и choosingCityViewModel)
                     FlightSelectionView(
                         coordinator: coordinator,
-                        viewModel: .init(carrierInfoService: services.carrierInfoService)
+                        viewModel: flightSelectionViewModel
                     )
+                    .onAppear {
+                        flightSelectionViewModel.ticket = ticket
+                    }
                 }
             }
         }
@@ -101,11 +105,3 @@ struct MainView: View {
         }
     }
 }
-//
-//#Preview {
-//    MainView(
-//        viewedStories: false,
-//        choosingCityViewModel: ChoosingCityViewModel(),
-//        stationSelectionViewModel: StationSelectionViewModel()
-//    )
-//}

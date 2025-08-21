@@ -3,18 +3,18 @@ import SwiftUI
 // MARK: - StationSelectionView
 
 struct StationSelectionView: View {
-
+    
     // MARK: Public Property
     
     @ObservedObject var viewModel: StationSelectionViewModel
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-       
+    
     // MARK: body
     
     var body: some View {
         VStack(spacing: 0) {
-           /// TODO
+            /// TODO
             SearchTextField(text: $viewModel.searchText)
             StationScrollView(
                 coordinator: coordinator,
@@ -22,7 +22,7 @@ struct StationSelectionView: View {
             )
         }
         .task {
-            // viewModel.loadData()
+            //            await viewModel.getStations()
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
@@ -61,7 +61,7 @@ private struct StationScrollView: View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
                 /// TODO
-                if !viewModel.filteredItems.isEmpty {
+                if !viewModel.stationsForView.isEmpty {
                     ListStations(
                         coordinator: coordinator,
                         viewModel: viewModel
@@ -99,14 +99,17 @@ private struct ListStations: View {
     // MARK: body
     
     var body: some View {
-        ForEach(viewModel.filteredItems, id: \.self) { item in
+        ForEach(viewModel.stationsForView, id: \.self) { item in
             Button(action: {
+                let station = viewModel.stations[viewModel.stations.firstIndex(where: { $0.title == item }) ?? .zero]
                 if viewModel.direction == .from {
                     coordinator.selectedCityFrom = viewModel.city
                     coordinator.selectedStationFrom = item
+                    coordinator.selectedStationFromCode = station.codes?.yandex_code ?? ""
                 } else {
                     coordinator.selectedCityTo = viewModel.city
                     coordinator.selectedStationTo = item
+                    coordinator.selectedStationToCode = station.codes?.yandex_code ?? ""
                 }
                 coordinator.path = NavigationPath()
             }) {
@@ -176,13 +179,3 @@ private struct StationSelectionTitle: View {
             .foregroundColor(.blackForTheme)
     }
 }
-
-//#Preview {
-//    NavigationView {
-//        StationSelectionView(
-//            coordinator: NavCoordinator(),
-//            city: "Москва",
-//            fromField: true
-//        )
-//    }
-//}

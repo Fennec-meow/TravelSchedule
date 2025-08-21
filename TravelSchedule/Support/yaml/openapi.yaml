@@ -132,6 +132,18 @@ paths:
           required: false
           schema:
             type: string
+        - name: system
+          in: query
+          description: Система кодирования, в которой указывается код станции отправления и код станции прибытия
+          required: false
+          schema:
+            type: string
+        - name: show_systems
+          in: query
+          description: Системы кодирования
+          required: false
+          schema:
+            type: string
         - name: offset
           in: query
           description: Смещение результатов

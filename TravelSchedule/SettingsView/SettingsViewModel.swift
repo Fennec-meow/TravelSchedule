@@ -1,19 +1,8 @@
-//
-//  SettingsViewModel.swift
-//  TravelSchedule
-//
-//  Created by Kira on 11.08.2025.
-//
-
 import SwiftUI
 
 @Observable
 final class SettingsViewModel {
-    
     static let shared = SettingsViewModel()
-    
-    //    private var copyrightService: CopyrightServiceProtocol
-
     
     private var changingTheTheme: Bool = false
     var isDarkMode: Bool {
@@ -31,7 +20,7 @@ final class SettingsViewModel {
     }
     
     func resetChangingTheme(_ systemDark: Bool) {
-       if !changingTheTheme {
+        if !changingTheTheme {
             isDarkMode = systemDark
         }
     }

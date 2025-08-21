@@ -1,36 +1,26 @@
 import SwiftUI
-/// TODO
+
 @MainActor
 final class ChoosingCityViewModel: ObservableObject {
     
-    @Published var searchText: String = ""
+    @Published var searchText: String = "" {
+        didSet { filterCities() }
+    }
     
     @Published var station: String = ""
     @Published var direction: GoingDirection = .from
     
-    @Published var cities: [String] = []
+    @Published private(set) var cities: [String] = []
+    @Published private(set) var filteredCities: [String] = []
+    @Published private(set) var settlements: [Components.Schemas.Settlement] = []
     
     private var allStationsService: AllStationsServiceProtocol?
-
-    var filteredItems: [String] {
-        guard !searchText.isEmpty else { return cities }
-        return cities.filter {
-            $0.localizedCaseInsensitiveContains(searchText)
-        }
-    }
+    private var allSettlements: [Components.Schemas.AllStationsResponse.CodingKeys.RawValue.Element] = []
     
     convenience init(
-//        searchText: String,
-//        station: String,
-//        direction: GoingDirection,
-//        cities: [String]
         service: AllStationsServiceProtocol?
     ) {
         self.init()
-//        self.searchText = searchText
-//        self.station = station
-//        self.direction = direction
-//        self.cities = cities
         self.allStationsService = service
     }
 }
@@ -50,9 +40,19 @@ extension ChoosingCityViewModel {
                 .filter { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
                 .removingDuplicates() ?? []
             // станции - settlements?.first?.stations
+            self.settlements = settlements ?? []
             self.cities = cities
         } catch {
             print("Error: \(error)")
+        }
+    }
+    
+    func filterCities() {
+        let text = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if text.isEmpty {
+            filteredCities = cities
+        } else {
+            filteredCities = cities.filter { $0.localizedCaseInsensitiveContains(text) }
         }
     }
 }
