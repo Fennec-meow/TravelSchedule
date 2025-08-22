@@ -13,7 +13,7 @@ protocol NearestStationsServiceProtocol {
 
 // MARK: - NearestStationsService
 
-final class NearestStationsService: NearestStationsServiceProtocol {
+actor NearestStationsService: NearestStationsServiceProtocol {
     
     // MARK: Private Property
     

@@ -13,7 +13,7 @@ protocol RouteStationsServiceProtocol {
 
 // MARK: - RouteStationsService
 
-final class RouteStationsService: RouteStationsServiceProtocol {
+actor RouteStationsService: RouteStationsServiceProtocol {
     
     // MARK: Private Property
     

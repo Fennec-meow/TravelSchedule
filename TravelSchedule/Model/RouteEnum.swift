@@ -1,9 +1,26 @@
 import Foundation
 
-enum RouteEnum: Hashable {
-    case choosingCity(station: String, fromField: Bool)
-    case stationSelection(city: String, fromField: Bool)
+enum Route: Hashable {
+    /// TODO
+    case choosingCity(
+        searchText: String,
+        station: String,
+        direction: GoingDirection,
+        cities: [String]
+    )
+    case stationSelection(
+        searchText: String,
+        city: String,
+        direction: GoingDirection,
+        stations: [Components.Schemas.Station]
+    )
     case ticketFiltering
     case routeParameter
     case flightSelection(Ticket)
+}
+
+// TODO: вынести в отдельный файл
+enum GoingDirection {
+    case from
+    case `where`
 }

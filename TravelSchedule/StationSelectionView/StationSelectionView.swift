@@ -4,46 +4,25 @@ import SwiftUI
 
 struct StationSelectionView: View {
     
-    // MARK: Private Property
-    
-    @State private var searchText = ""
-    
     // MARK: Public Property
     
+    @ObservedObject var viewModel: StationSelectionViewModel
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-    
-    var filteredItems: [String] {
-        guard !searchText.isEmpty else { return cities }
-        return cities.filter {
-            $0.localizedCaseInsensitiveContains(searchText)
-        }
-    }
-    
-    let city: String
-    let fromField: Bool
-    
-    let cities = [
-        "Киевский вокзал",
-        "Курский вокзал",
-        "Ярославский вокзал",
-        "Белорусский вокзал",
-        "Савеловский вокзал",
-        "Ленинградский вокзал"
-    ]
     
     // MARK: body
     
     var body: some View {
         VStack(spacing: 0) {
-            SearchTextField(text: $searchText)
+            /// TODO
+            SearchTextField(text: $viewModel.searchText)
             StationScrollView(
                 coordinator: coordinator,
-                filteredItems: filteredItems,
-                cities: cities,
-                city: city,
-                fromField: fromField
+                viewModel: viewModel
             )
+        }
+        .task {
+            //            await viewModel.getStations()
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
@@ -65,26 +44,27 @@ private struct StationScrollView: View {
     
     // MARK: Public Property
     
-    @ObservedObject var coordinator: NavCoordinator
-    @State var searchText = ""
+    @ObservedObject private var coordinator: NavCoordinator
+    @ObservedObject var viewModel: StationSelectionViewModel
     
-    let filteredItems: [String]
-    var cities: [String]
-    
-    let city: String
-    let fromField: Bool
+    init(
+        coordinator: NavCoordinator,
+        viewModel: StationSelectionViewModel
+    ) {
+        self.coordinator = coordinator
+        self.viewModel = viewModel
+    }
     
     // MARK: body
     
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
-                if !filteredItems.isEmpty {
+                /// TODO
+                if !viewModel.stationsForView.isEmpty {
                     ListStations(
                         coordinator: coordinator,
-                        filteredItems: filteredItems,
-                        city: city,
-                        fromField: fromField
+                        viewModel: viewModel
                     )
                 } else {
                     VStack {
@@ -104,24 +84,32 @@ private struct ListStations: View {
     
     // MARK: Public Property
     
-    @ObservedObject var coordinator: NavCoordinator
+    @ObservedObject private var coordinator: NavCoordinator
+    @ObservedObject var viewModel: StationSelectionViewModel
     @Environment(\.dismiss) var dismiss
     
-    let filteredItems: [String]
-    let city: String
-    let fromField: Bool
+    init(
+        coordinator: NavCoordinator,
+        viewModel: StationSelectionViewModel
+    ) {
+        self.coordinator = coordinator
+        self.viewModel = viewModel
+    }
     
     // MARK: body
     
     var body: some View {
-        ForEach(filteredItems, id: \.self) { item in
+        ForEach(viewModel.stationsForView, id: \.self) { item in
             Button(action: {
-                if fromField {
-                    coordinator.selectedCityFrom = city
+                let station = viewModel.stations[viewModel.stations.firstIndex(where: { $0.title == item }) ?? .zero]
+                if viewModel.direction == .from {
+                    coordinator.selectedCityFrom = viewModel.city
                     coordinator.selectedStationFrom = item
+                    coordinator.selectedStationFromCode = station.codes?.yandex_code ?? ""
                 } else {
-                    coordinator.selectedCityTo = city
+                    coordinator.selectedCityTo = viewModel.city
                     coordinator.selectedStationTo = item
+                    coordinator.selectedStationToCode = station.codes?.yandex_code ?? ""
                 }
                 coordinator.path = NavigationPath()
             }) {
@@ -189,15 +177,5 @@ private struct StationSelectionTitle: View {
         Text("Выбор станции")
             .font(.bold17)
             .foregroundColor(.blackForTheme)
-    }
-}
-
-#Preview {
-    NavigationView {
-        StationSelectionView(
-            coordinator: NavCoordinator(),
-            city: "Москва",
-            fromField: true
-        )
     }
 }

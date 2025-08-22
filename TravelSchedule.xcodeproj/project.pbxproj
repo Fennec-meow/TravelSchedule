@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CEB0DC5E2E13D1AB0002B320 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0DC5D2E13D1AB0002B320 /* OpenAPIURLSession */; };
-		CEB0DC612E13D1C10002B320 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0DC602E13D1C10002B320 /* OpenAPIRuntime */; };
+		CEB0DC612E13D1C10002B320 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CEB0DC602E13D1C10002B320 /* OpenAPIRuntime */; settings = {ATTRIBUTES = (Required, ); }; };
 		CEB0DCB92E157BBF0002B320 /* TravelScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCA92E157BBF0002B320 /* TravelScheduleApp.swift */; };
 		CEB0DCBA2E157BBF0002B320 /* NearestStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCAE2E157BBF0002B320 /* NearestStationsService.swift */; };
 		CEB0DCBB2E157BBF0002B320 /* RouteStationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0DCAF2E157BBF0002B320 /* RouteStationsService.swift */; };
@@ -46,7 +46,9 @@
 		CE3FED512E3280F400D75A6A /* Exceptions for "TestFetch" folder in "TravelSchedule" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				APIClientFactory.swift,
 				Apikey.swift,
+				APIServicesContainer.swift,
 				TestFetch.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
@@ -62,6 +64,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ChoosingCityView.swift,
+				ChoosingCityViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -97,6 +100,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				StationSelectionView.swift,
+				StationSelectionViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -104,6 +108,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				FlightSelectionView.swift,
+				FlightSelectionViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -128,6 +133,7 @@
 			membershipExceptions = (
 				TicketCell.swift,
 				TicketFilteringView.swift,
+				TicketFilteringViewModel.swift,
 			);
 			target = CEB0DC362E13CEA70002B320 /* TravelSchedule */;
 		};
@@ -135,6 +141,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				SettingsView.swift,
+				SettingsViewModel.swift,
 				UserAgreementView.swift,
 				WebView.swift,
 			);
@@ -534,6 +541,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -590,6 +598,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -601,7 +610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FJA62MK9TU;
+				DEVELOPMENT_TEAM = Y5WH4AQ9FW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelSchedule/Info.plist;
@@ -630,7 +639,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FJA62MK9TU;
+				DEVELOPMENT_TEAM = Y5WH4AQ9FW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TravelSchedule/Info.plist;

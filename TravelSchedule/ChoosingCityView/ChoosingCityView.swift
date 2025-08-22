@@ -4,47 +4,25 @@ import SwiftUI
 
 struct ChoosingCityView: View {
     
-    // MARK: Private Property
-    
-    @State private var searchText = ""
-    
     // MARK: Public Property
     
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-    
-    var filteredItems: [String] {
-        guard !searchText.isEmpty else { return cities }
-        return cities.filter {
-            $0.localizedCaseInsensitiveContains(searchText)
-        }
-    }
-    
-    let station: String
-    let fromField: Bool
-    
-    let cities = [
-        "Москва",
-        "Санкт-Петербург",
-        "Сочи",
-        "Горный воздух",
-        "Краснодар",
-        "Казань",
-        "Омск"
-    ]
     
     // MARK: body
     
     var body: some View {
         VStack(spacing: 0) {
-            SearchTextField(text: $searchText)
+            /// TODO
+            SearchTextField(text: $viewModel.searchText)
             CityScrollView(
                 coordinator: coordinator,
-                filteredItems: filteredItems,
-                cities: cities,
-                station: station,
-                fromField: fromField
+                viewModel: viewModel
             )
+        }
+        .task {
+            await viewModel.getCities()
         }
         .navigationBarTitleDisplayMode(.inline)
         Spacer()
@@ -66,31 +44,33 @@ private struct CityScrollView: View {
     
     // MARK: Public Property
     
+    /// TODO
     @ObservedObject var coordinator: NavCoordinator
-    @State var searchText = ""
+    @ObservedObject var viewModel: ChoosingCityViewModel
     
-    let filteredItems: [String]
-    var cities: [String]
-    
-    let station: String
-    let fromField: Bool
+    init(
+        coordinator: NavCoordinator,
+        viewModel: ChoosingCityViewModel
+    ) {
+        self.coordinator = coordinator
+        self.viewModel = viewModel
+    }
     
     // MARK: body
     
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading) {
-                if !filteredItems.isEmpty {
-                    ListCities(
-                        coordinator: coordinator,
-                        filteredItems: filteredItems,
-                        station: station,
-                        fromField: fromField
-                    )
-                } else {
+                /// TODO
+                if viewModel.filteredCities.isEmpty {
                     VStack {
                         CityNotFound()
                     }
+                } else {
+                    ListCities(
+                        coordinator: coordinator,
+                        viewModel: viewModel
+                    )
                 }
             }
         }
@@ -104,28 +84,45 @@ private struct CityScrollView: View {
 private struct ListCities: View {
     
     // MARK: Public Property
-    
-    @ObservedObject var coordinator: NavCoordinator
+    /// TODO
+    @ObservedObject private var coordinator: NavCoordinator
+    @ObservedObject var viewModel: ChoosingCityViewModel
     @Environment(\.dismiss) var dismiss
     
-    let filteredItems: [String]
-    let station: String
-    let fromField: Bool
+    init(
+        coordinator: NavCoordinator,
+        viewModel: ChoosingCityViewModel
+    ) {
+        self.coordinator = coordinator
+        self.viewModel = viewModel
+    }
     
     // MARK: body
     
     var body: some View {
-        ForEach(filteredItems, id: \.self) { item in
+        ForEach(viewModel.filteredCities, id: \.self) { item in
             Button(action: {
-                
-                if fromField {
+                let station = viewModel.settlements[viewModel.settlements.firstIndex(where: { $0.title == item }) ?? .zero].stations ?? []
+                if viewModel.direction == .from {
                     coordinator.selectedCityFrom = item
-                    coordinator.selectedStationFrom = station
+                    //                    coordinator.selectedStationFrom     = station.first?.title ?? ""
+                    //                    coordinator.selectedStationFromCode = station.first?.codes?.yandex_code ?? ""
+                    
                 } else {
                     coordinator.selectedCityTo = item
-                    coordinator.selectedStationTo = station
+                    //                    coordinator.selectedStationTo    = station.first?.title ?? ""
+                    //                    coordinator.selectedStationToCode = station.first?.codes?.yandex_code ?? ""
+                    
                 }
-                coordinator.path.append(RouteEnum.stationSelection(city: item, fromField: fromField))
+                coordinator.path.append(
+                    Route.stationSelection(
+                        searchText: viewModel.searchText,
+                        city: item,
+                        direction: viewModel.direction,
+                        stations: station
+                    )
+                )
+                // TODO: CRITICAL!!! переписать под поле со станциями!
             }) {
                 HStack {
                     Text("\(item)")
@@ -192,15 +189,5 @@ private struct CitySelectionTitle: View {
         Text("Выбор города")
             .font(.bold17)
             .foregroundColor(.blackForTheme)
-    }
-}
-
-#Preview {
-    NavigationView {
-        ChoosingCityView(
-            coordinator: NavCoordinator(),
-            station: "Киевский вокзал",
-            fromField: true
-        )
     }
 }

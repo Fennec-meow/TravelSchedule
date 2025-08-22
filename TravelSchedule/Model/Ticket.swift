@@ -1,23 +1,21 @@
 import SwiftUI
 
-// MARK: Ticket
+// MARK: Ticket struct
 
-struct Ticket: Identifiable, Hashable {
+struct Ticket: Identifiable, Hashable, Sendable {
     let id = UUID()
+    let code: Int?
     let operatorLogo: String
     let carrierName: String
-    let opf: String
     let withTransfer: Bool
     let transfer: String?
     let date: String
     let departure: String
     let duration: String
     let arrival: String
-    let email: String
-    let phone: String
 }
 
-// MARK: Extension
+// MARK: Extension + departurePeriod
 
 extension Ticket {
     var departurePeriod: DepartureTime {

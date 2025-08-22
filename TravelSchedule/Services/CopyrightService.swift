@@ -13,7 +13,7 @@ protocol CopyrightServiceProtocol {
 
 // MARK: - CopyrightService
 
-final class CopyrightService: CopyrightServiceProtocol {
+actor CopyrightService: CopyrightServiceProtocol {
     
     // MARK: Private Property
     

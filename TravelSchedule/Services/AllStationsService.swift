@@ -14,7 +14,7 @@ protocol AllStationsServiceProtocol {
 
 // MARK: - AllStationsService
 
-final class AllStationsService: AllStationsServiceProtocol {
+actor AllStationsService: AllStationsServiceProtocol {
     
     // MARK: Private Property
     

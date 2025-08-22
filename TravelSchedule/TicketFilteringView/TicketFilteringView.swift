@@ -5,83 +5,15 @@ import SwiftUI
 struct TicketFilteringView: View {
     
     // MARK: Private Property
+    @ObservedObject var viewModel: TicketFilteringViewModel
     
-    private var containsFromAndToTitle: String {
-        "\(coordinator.selectedCityFrom) (\(coordinator.selectedStationFrom)) → \(coordinator.selectedCityTo) (\(coordinator.selectedStationTo))"
+    var containsFromAndToTitle: String {
+        "\(coordinator.selectedStationFrom) → \(coordinator.selectedStationTo)"
     }
-    
-    private var filteredTickets: [Ticket] {
-        tickets.filter { ticket in
-            if let show = coordinator.showTransfers,
-               show != ticket.withTransfer
-            { return false }
-            
-            guard coordinator.timeFilters.isEmpty else {
-                return coordinator.timeFilters.contains(ticket.departurePeriod)
-            }
-            return true
-        }
-    }
-    
     // MARK: Public Property
     
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-    
-    let tickets: [Ticket] = [
-        .init(
-            operatorLogo: "RJD",
-            carrierName: "РЖД",
-            opf: "ОАО «РЖД»",
-            withTransfer: true,
-            transfer: "С пересадкой в Костроме",
-            date: "14 января",
-            departure: "22:30",
-            duration: "20 часов",
-            arrival: "08:15",
-            email: "ticket@rzd.ru",
-            phone: "+7 (800) 201-43-56"
-        ),
-        .init(
-            operatorLogo: "FGC",
-            carrierName: "ФГК",
-            opf: "АО «ФГК»",
-            withTransfer: true,
-            transfer: nil,
-            date: "15 января",
-            departure: "01:15",
-            duration: "9 часов",
-            arrival: "09:00",
-            email: "info@railfgk.ru",
-            phone: "+7 (800) 250-47-77"
-        ),
-        .init(
-            operatorLogo: "uralLogistics",
-            carrierName: "Урал логистика",
-            opf: "ООО «Урал логистика»",
-            withTransfer: true,
-            transfer: nil,
-            date: "16 января",
-            departure: "12:30",
-            duration: "9 часов",
-            arrival: "21:00",
-            email: "general@ulgroup.ru",
-            phone: "+7 (495) 783-83-83"
-        ),
-        .init(
-            operatorLogo: "RJD",
-            carrierName: "РЖД",
-            opf: "ОАО «РЖД»",
-            withTransfer: true,
-            transfer: "С пересадкой в Костроме",
-            date: "17 января",
-            departure: "22:30",
-            duration: "20 часов",
-            arrival: "08:15",
-            email: "ticket@rzd.ru",
-            phone: "+7 (800) 201-43-56"
-        )
-    ]
     
     // MARK: body
     
@@ -90,9 +22,18 @@ struct TicketFilteringView: View {
             FromWhereAndToWhereTitle(title: containsFromAndToTitle)
             
             ZStack(alignment: .bottom) {
-                TicketsScrollView(coordinator: coordinator, tickets: filteredTickets)
+                TicketsScrollView(
+                    viewModel: viewModel,
+                    coordinator: coordinator,
+                )
                 SpecifyTimeButton(coordinator: coordinator)
             }
+        }
+        .task {
+            viewModel.coordinator = self.coordinator
+            viewModel.toStation = coordinator.selectedStationToCode
+            viewModel.fromStation = coordinator.selectedStationFromCode
+            await viewModel.fetchTickets()
         }
         .padding(.horizontal, 16)
         .navigationBarBackButtonHidden(true)
@@ -130,23 +71,23 @@ private struct FromWhereAndToWhereTitle: View {
 private struct TicketsScrollView: View {
     
     // MARK: Public Property
+    @ObservedObject var viewModel: TicketFilteringViewModel
     
     let coordinator: NavCoordinator
-    let tickets: [Ticket]
     
     // MARK: body
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 8) {
-                if tickets.isEmpty {
-                    AreNoOptions()
-                } else {
-                    ForEach(tickets) { ticket in
+                if !viewModel.tickets.isEmpty {
+                    ForEach(viewModel.filteredTickets) { ticket in
                         ShowListFlights(action: {
-                            coordinator.path.append(RouteEnum.flightSelection(ticket))
+                            coordinator.path.append(Route.flightSelection(ticket))
                         }, ticket: ticket)
                     }
+                } else {
+                    AreNoOptions()
                 }
             }
         }
@@ -201,7 +142,7 @@ private struct SpecifyTimeButton: View {
     
     var body: some View {
         Button(action: {
-            coordinator.path.append(RouteEnum.routeParameter)
+            coordinator.path.append(Route.routeParameter)
         }) {
             HStack(spacing: 4) {
                 Text("Уточнить время")
@@ -240,8 +181,4 @@ private struct BackButton: View {
                 .foregroundStyle(.blackForTheme)
         }
     }
-}
-
-#Preview {
-    TicketFilteringView(coordinator: NavCoordinator())
 }

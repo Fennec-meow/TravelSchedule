@@ -8,18 +8,18 @@ struct FlightSelectionView: View {
     
     @ObservedObject var coordinator: NavCoordinator
     @Environment(\.dismiss) var dismiss
-    var ticket: Ticket
+    @ObservedObject var viewModel: FlightSelectionViewModel
     
     // MARK: body
     
     var body: some View {
         VStack(alignment: .leading) {
-            Image(ticket.operatorLogo)
+            Image(viewModel.carrier?.logo ?? "FGC")
                 .resizable()
                 .scaledToFit()
                 .frame(minWidth: 343, maxHeight: 104)
             
-            Text(ticket.opf)
+            Text(viewModel.carrier?.title ?? "title")
                 .font(.bold24)
                 .padding(.vertical, 16)
                 .foregroundColor(.blackForTheme)
@@ -30,21 +30,21 @@ struct FlightSelectionView: View {
                         .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     
-                    if let email = URL(string: ticket.email) {
+                    if let email = URL(string: viewModel.carrier?.email ?? "email") {
                         Link(destination: email) {
-                            Text(ticket.email)
+                            Text(viewModel.carrier?.email ?? "email")
                         }
                     }
                 }
-                                
+                
                 VStack(alignment: .leading) {
                     Text("Телефон")
                         .font(.regular17)
                         .foregroundColor(.blackForTheme)
                     
-                    if let phone = URL(string: ticket.phone) {
+                    if let phone = URL(string: viewModel.carrier?.phone ?? "phone") {
                         Link(destination: phone) {
-                            Text(ticket.phone)
+                            Text(viewModel.carrier?.phone ?? "phone")
                         }
                     }
                 }
@@ -52,6 +52,10 @@ struct FlightSelectionView: View {
             Spacer()
         }
         .padding(.init(top: 0, leading: -16, bottom: 0, trailing: 16))
+        .task {
+            // TODO: убрать mock-данные
+            await viewModel.fetchCarrier(code: "680")
+        }
         
         .padding()
         .navigationBarBackButtonHidden(true)
@@ -70,22 +74,4 @@ struct FlightSelectionView: View {
             }
         }
     }
-}
-
-#Preview {
-    FlightSelectionView(
-        coordinator: NavCoordinator(),
-        ticket: Ticket(
-            operatorLogo: "RJD",
-            carrierName: "РЖД",
-            opf: "ООО «РЖД»",
-            withTransfer: true,
-            transfer: "С пересадкой в Костроме",
-            date: "14 января",
-            departure: "22:30",
-            duration: "20 часов",
-            arrival: "08:15",
-            email: "ticket@rzd.ru",
-            phone: "+7 (800) 201-43-56"
-        ))
 }

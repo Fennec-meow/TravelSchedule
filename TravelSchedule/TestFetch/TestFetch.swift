@@ -9,14 +9,14 @@ struct TestFetch: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             .onAppear {
                 // Вызовы тестовых функций
-                testFetchStations()
-                //            testFetchSegments()
-                //            testFetchScheduleResponse()
-                //            testFetchThreadStationsResponse()
-                //            testFetchNearestCityResponse()
-                //            testFetchCarrierResponse()
-                //            testFetchAllStationsResponse()
-                //            testFetchCopyright()
+                //                testFetchStations()
+                //                testFetchSegments()
+                testFetchScheduleResponse()
+                //                testFetchThreadStationsResponse()
+                //                testFetchNearestCityResponse()
+                //                testFetchCarrierResponse()
+                //                testFetchAllStationsResponse()
+                //                testFetchCopyright()
             }
     }
 }
@@ -27,7 +27,7 @@ func testFetchStations() {
     Task {
         do {
             let client = Client(
-                serverURL: try Servers.server1(),
+                serverURL: try Servers.Server1.url(),
                 transport: URLSessionTransport()
             )
             
@@ -52,30 +52,30 @@ func testFetchStations() {
 
 // MARK: - SchedualBetweenStationsService
 
-func testFetchSegments() {
-    Task {
-        do {
-            let client = Client(
-                serverURL: try Servers.server1(),
-                transport: URLSessionTransport()
-            )
-            
-            let service = SchedualBetweenStationsService(
-                client: client,
-                apikey: Apikey.apiKey
-            )
-            print("Fetching service...")
-            let segments = try await service.getSchedualBetweenStations(
-                from: "c146",
-                to: "c213"
-            )
-            
-            print("Successfully fetched service: \(segments)")
-        } catch {
-            print("Error fetching service: \(error)")
-        }
-    }
-}
+//func testFetchSegments() {
+//    Task {
+//        do {
+//            let client = Client(
+//                serverURL: try Servers.server1(),
+//                transport: URLSessionTransport()
+//            )
+//            
+//            let service = SchedualBetweenStationsService(
+//                client: client,
+//                apikey: Apikey.apiKey
+//            )
+//            print("Fetching service...")
+//            let segments = try await service.getSchedualBetweenStations(
+//                from: "c146",
+//                to: "c213"
+//            )
+//            
+//            print("Successfully fetched service: \(segments)")
+//        } catch {
+//            print("Error fetching service: \(error)")
+//        }
+//    }
+//}
 
 // MARK: - StationScheduleService
 
@@ -145,8 +145,8 @@ func testFetchNearestCityResponse() {
             )
             print("Fetching service...")
             let nearestCityResponse = try await service.getNearestCity(
-                lat: 59.86580221563463,
-                lng: 30.320322626983558
+                lat: 45.023877,
+                lng: 38.970157
             )
             
             print("Successfully fetched nearestCityResponse: \(nearestCityResponse)")

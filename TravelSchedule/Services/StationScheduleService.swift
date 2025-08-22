@@ -13,7 +13,7 @@ protocol StationScheduleServiceProtocol {
 
 // MARK: - StationScheduleService
 
-final class StationScheduleService: StationScheduleServiceProtocol {
+actor StationScheduleService: StationScheduleServiceProtocol {
     
     // MARK: Private Property
     
@@ -38,7 +38,7 @@ extension StationScheduleService {
         let response = try await client.getStationSchedule(query: .init(
             apikey: apikey,
             station: station,
-            date: "2025-07-02"
+            date: "2025-08-19"
         ))
         return try response.ok.body.json
     }
